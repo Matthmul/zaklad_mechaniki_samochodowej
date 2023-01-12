@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
 
 namespace zaklad_mechaniki_samochodowej
@@ -19,7 +21,23 @@ namespace zaklad_mechaniki_samochodowej
             SqlCommand cmd;
             SqlConnection cn;
             SqlDataReader dr;
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\zaklad_mechaniki_samochodowej\Database.mdf;Integrated Security=True");
+
+            string dirStr = AppDomain.CurrentDomain.BaseDirectory;
+            var dir = Directory.GetParent(dirStr);
+            while (dir.Parent.Exists)
+            {
+                if (dir.GetFiles("Database.mdf").Length != 0)
+                {
+                    dirStr = dir.ToString() + "\\Database.mdf";
+                    break;
+                }
+                dir = dir.Parent;
+            }
+            if (!dir.Parent.Exists)
+            {
+                return;
+            }
+            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + dirStr + ";Integrated Security=True");
             cn.Open();
 
             cmd = new SqlCommand("select * from LoginTable where username='admin'", cn);

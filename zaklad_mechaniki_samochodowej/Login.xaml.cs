@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -23,7 +24,22 @@ namespace zaklad_mechaniki_samochodowej
 
         private void Login_Load()
         {
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\zaklad_mechaniki_samochodowej\Database.mdf;Integrated Security=True");
+            string dirStr = AppDomain.CurrentDomain.BaseDirectory;
+            var dir = Directory.GetParent(dirStr);
+            while (dir.Parent.Exists)
+            {
+                if (dir.GetFiles("Database.mdf").Length != 0)
+                {
+                    dirStr = dir.ToString() + "\\Database.mdf";
+                    break;
+                }
+                dir = dir.Parent;
+            }
+            if (!dir.Parent.Exists)
+            {
+                return;
+            }
+            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + dirStr + ";Integrated Security=True");
             cn.Open();
         }
 
@@ -48,11 +64,12 @@ namespace zaklad_mechaniki_samochodowej
                         HomeClient home = new HomeClient();
                         home.ShowDialog();
                     }
+                    this.Close();
                 }
                 else
                 {
                     dr.Close();
-                    MessageBox.Show("No Account avilable with this username and password ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No Account avilable with this username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -67,6 +84,7 @@ namespace zaklad_mechaniki_samochodowej
             this.Hide();
             Registration registration = new Registration();
             registration.ShowDialog();
+            this.Close();
         }
     }
 }
