@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="Home Klient" Height="450" Width="800">
     <Grid>
-        <TextBlock Name="txtnapis" HorizontalAlignment="Left" Margin="206,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="145" Width="373"/>
+        <TextBlock x:Name="txtuser" HorizontalAlignment="Left" Margin="43,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="74"><Run Language="pl-pl" Text="123"/></TextBlock>
+        <Label Content="Wszystkie informacje o twoim samochodzie w jednym miejscu" HorizontalAlignment="Left" Margin="224,22,0,0" VerticalAlignment="Top" Width="348" Height="33"/>
+        <Button Content="Dodaj samochód do naprawy" HorizontalAlignment="Left" Margin="296,324,0,0" VerticalAlignment="Top" Width="172" Height="47" Click="Button_Click"/>
+        <CheckBox Content="Naprawa" HorizontalAlignment="Left" Margin="253,100,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Przegląd" HorizontalAlignment="Left" Margin="374,100,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Montaż" HorizontalAlignment="Left" Margin="253,121,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Konsultacja techniczna" HorizontalAlignment="Left" Margin="382,120,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Szkolenie" HorizontalAlignment="Left" Margin="253,147,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Zamawianie części" HorizontalAlignment="Left" Margin="382,150,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <Label Content="Użytkownik" HorizontalAlignment="Left" Margin="43,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="Stan twojego zlecenia" HorizontalAlignment="Left" Margin="624,25,0,0" VerticalAlignment="Top" Width="152"/>
+        <Label Content="Numer telefonu" HorizontalAlignment="Left" Margin="43,72,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txttelephone" HorizontalAlignment="Left" Margin="43,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="74"><Run Language="pl-pl" Text="123"/></TextBlock>
+        <Label Content="Co chcesz zrobic" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="104" Height="33"/>
+        <Label Content="Adres e-mail" HorizontalAlignment="Left" Margin="32,133,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtemail" HorizontalAlignment="Left" Margin="43,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="74"><Run Language="pl-pl" Text="123"/></TextBlock>
+        <TextBlock x:Name="txtOrderStatus" HorizontalAlignment="Left" Margin="644,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="74"><Run Language="pl-pl" Text="sprawny"/></TextBlock>
+        <ComboBox HorizontalAlignment="Left" Margin="173,205,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem>Toyota</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Mazda</ComboBoxItem>
+            <ComboBoxItem>Suzuki</ComboBoxItem>
+            <ComboBoxItem>Ford</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Marka pojazdu" HorizontalAlignment="Left" Margin="173,170,0,0" VerticalAlignment="Top" Width="97"/>
+        <Label Content="Model pojazdu" HorizontalAlignment="Left" Margin="392,171,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBox Name="CarModel" HorizontalAlignment="Left" Margin="400,202,0,0" TextWrapping="Wrap" Text="MOdel" VerticalAlignment="Top" Width="144"/>
     </Grid>
 </Window>

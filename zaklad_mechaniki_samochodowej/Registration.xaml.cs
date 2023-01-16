@@ -62,7 +62,7 @@ namespace zaklad_mechaniki_samochodowej
                     if (dr.Read())
                     {
                         dr.Close();
-                        MessageBox.Show("Username Already exist please try another ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Użytkownik o takiej nazwie już istnieje ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -71,17 +71,17 @@ namespace zaklad_mechaniki_samochodowej
                         cmd.Parameters.AddWithValue("username", txtusername.Text);
                         cmd.Parameters.AddWithValue("password", txtpassword.Password.ToString());
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Your Account is created . Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Twoje konto zostało utworzone . Zaloguj się teraz.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please enter both password same ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Hasła muszą się zgadzać! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Please enter value in all field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wszystkie pola muszą być wypełnione.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

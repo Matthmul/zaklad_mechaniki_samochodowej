@@ -5,15 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:zaklad_mechaniki_samochodowej"
         mc:Ignorable="d"
-        Title="Ekran rejestracji" Height="310" Width="554.154">
-    <Grid>
-        <TextBox Name="txtusername" HorizontalAlignment="Left" Height="34" Margin="103,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381" Grid.Column="1"/>
-        <PasswordBox PasswordChar="*" Name="txtpassword" HorizontalAlignment="Left" Height="34" Margin="106,59,0,0" VerticalAlignment="Top" Width="381" Grid.Column="1"/>
-        <PasswordBox PasswordChar="*" Name="txtconfirmpassword" HorizontalAlignment="Left" Height="34" Margin="106,107,0,0" VerticalAlignment="Top" Width="381" Grid.Column="1"/>
-        <Button IsDefault="True" Content="Zarejestruj" HorizontalAlignment="Left" Height="27" Margin="97,168,0,0" VerticalAlignment="Top" Width="280" Grid.Column="1" Click="Button_Click_1"/>
-        <Button Content="Masz konto? Zaloguj się teraz" HorizontalAlignment="Left" Height="37" Margin="34,220,0,0" VerticalAlignment="Top" Width="408" Grid.Column="1" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Wpisz nazwe użytkownika" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="34" Width="137"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Wpisz hasło" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="34" Width="137"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Potwierdź hasło" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="34" Width="137"/>
+        Title="Ekran rejestracji" Height="350" Width="554.154" Background="Black">
+    <Grid Height="350" Width="525" Background="Bisque">
+        <TextBox Name="txtusername" HorizontalAlignment="Left" Height="34" Margin="127,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381"/>
+        <PasswordBox PasswordChar="*" Name="txtpassword" HorizontalAlignment="Left" Height="34" Margin="127,59,0,0" VerticalAlignment="Top" Width="381"/>
+        <PasswordBox PasswordChar="*" Name="txtconfirmpassword" HorizontalAlignment="Left" Height="34" Margin="127,107,0,0" VerticalAlignment="Top" Width="381"/>
+        <Button Background="IndianRed" IsDefault="True"  HorizontalAlignment="Center" Height="53" Margin="0,183,0,0" VerticalAlignment="Top" Width="332" Click="Button_Click_1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Blue"  FontWeight="Bold" Margin="2,0" >Zarejestruj się</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Content="Masz konto? Zaloguj się teraz" HorizontalAlignment="Center" Height="27" Margin="0,262,0,0" VerticalAlignment="Top" Width="256" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="112"><Run Language="pl-pl" Text="Nazwa użytkownika"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,64,0,0" TextWrapping="Wrap" Text="Wpisz hasło" VerticalAlignment="Top" Height="24" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,116,0,0" TextWrapping="Wrap" Text="Potwierdź hasło" VerticalAlignment="Top" Height="16" Width="93" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>

@@ -45,6 +45,7 @@ namespace zaklad_mechaniki_samochodowej
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
             if (txtpassword.Password.ToString() != string.Empty || txtusername.Text != string.Empty)
             {
 
@@ -53,6 +54,9 @@ namespace zaklad_mechaniki_samochodowej
                 if (dr.Read())
                 {
                     dr.Close();
+                    Properties.Settings.Default.nazwa_uzytkownika = txtusername.Text;
+
+
                     this.Hide();
                     if (txtusername.Text == "admin")
                     {
@@ -69,13 +73,13 @@ namespace zaklad_mechaniki_samochodowej
                 else
                 {
                     dr.Close();
-                    MessageBox.Show("No Account avilable with this username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("NIe istnieje użytkownik o takim loginie lub haśle .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             else
             {
-                MessageBox.Show("Please enter value in all field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wszystkie pola muszą być wypełnione.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
