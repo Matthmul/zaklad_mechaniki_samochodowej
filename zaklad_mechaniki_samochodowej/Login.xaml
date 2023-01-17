@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Login" Height="265.069" Width="585.274" Background="Black">
     <Grid Background="Bisque">
-        <TextBox Name="txtusername" HorizontalAlignment="Left" Height="34" Margin="132,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381"/>
+        <TextBox Name="txtUserName" HorizontalAlignment="Left" Height="34" Margin="132,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381"/>
         <PasswordBox PasswordChar="*" Name="txtpassword" HorizontalAlignment="Left" Height="34" Margin="132,59,0,0" VerticalAlignment="Top" Width="381"/>
         <Button IsDefault="True" HorizontalAlignment="Center" Height="38" Margin="0,133,0,0" VerticalAlignment="Top" Width="300" Click="Button_Click_1">
             <StackPanel Orientation="Horizontal">

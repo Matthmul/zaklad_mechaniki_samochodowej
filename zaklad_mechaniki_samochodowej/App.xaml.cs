@@ -40,7 +40,7 @@ namespace zaklad_mechaniki_samochodowej
             cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + dirStr + ";Integrated Security=True");
             cn.Open();
 
-            cmd = new SqlCommand("select * from LoginTable where username='admin'", cn);
+            cmd = new SqlCommand("select * from LoginTable where Username='admin'", cn);
             dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -49,10 +49,10 @@ namespace zaklad_mechaniki_samochodowej
             else
             {
                 dr.Close();
-                cmd = new SqlCommand("INSERT INTO LoginTable (username, password, isAdmin) VALUES (@username,@password,@isAdmin)", cn);
-                cmd.Parameters.AddWithValue("username", "admin");
-                cmd.Parameters.AddWithValue("password", "admin");
-                cmd.Parameters.AddWithValue("isAdmin", 1);
+                cmd = new SqlCommand("INSERT INTO LoginTable (Username, Password, IsAdmin) VALUES (@Username,@Password,@IsAdmin)", cn);
+                cmd.Parameters.AddWithValue("Username", "admin");
+                cmd.Parameters.AddWithValue("Password", "admin");
+                cmd.Parameters.AddWithValue("IsAdmin", 1);
                 cmd.ExecuteNonQuery();
             }
             zaklad_mechaniki_samochodowej.App app = new zaklad_mechaniki_samochodowej.App();

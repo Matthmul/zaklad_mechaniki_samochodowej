@@ -57,26 +57,26 @@ namespace zaklad_mechaniki_samochodowej
             {
                 if (txtpassword.Password.ToString() == txtconfirmpassword.Password.ToString())
                 {
-                    cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "'", cn);
+                    cmd = new SqlCommand("select * from LoginTable where Username='" + txtusername.Text + "'", cn);
                     dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
                         dr.Close();
-                        MessageBox.Show("Użytkownik o takiej nazwie już istnieje ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Użytkownik o takiej nazwie już istnieje.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
                         dr.Close();
-                        cmd = new SqlCommand("INSERT INTO LoginTable (username, password) VALUES (@username,@password)", cn);
-                        cmd.Parameters.AddWithValue("username", txtusername.Text);
-                        cmd.Parameters.AddWithValue("password", txtpassword.Password.ToString());
+                        cmd = new SqlCommand("INSERT INTO LoginTable (Username, Password) VALUES (@Username,@Password)", cn);
+                        cmd.Parameters.AddWithValue("Username", txtusername.Text);
+                        cmd.Parameters.AddWithValue("Password", txtpassword.Password.ToString());
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Twoje konto zostało utworzone . Zaloguj się teraz.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Twoje konto zostało utworzone. Zaloguj się teraz.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Hasła muszą się zgadzać! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Hasła muszą się zgadzać!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

@@ -26,13 +26,13 @@ namespace zaklad_mechaniki_samochodowej.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string nazwa_uzytkownika {
+        public string UserName {
             get {
-                return ((string)(this["nazwa_uzytkownika"]));
+                return ((string)(this["UserName"]));
             }
             set
             {
-                (this["nazwa_uzytkownika"]) = value;
+                (this["UserName"]) = value;
             }
         }
     }

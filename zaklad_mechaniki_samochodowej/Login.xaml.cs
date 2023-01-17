@@ -46,19 +46,18 @@ namespace zaklad_mechaniki_samochodowej
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             
-            if (txtpassword.Password.ToString() != string.Empty || txtusername.Text != string.Empty)
+            if (txtpassword.Password.ToString() != string.Empty || txtUserName.Text != string.Empty)
             {
 
-                cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "' and password='" + txtpassword.Password.ToString() + "'", cn);
+                cmd = new SqlCommand("select * from LoginTable where Username='" + txtUserName.Text + "' and Password='" + txtpassword.Password.ToString() + "'", cn);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
                     dr.Close();
-                    Properties.Settings.Default.nazwa_uzytkownika = txtusername.Text;
-
+                    Properties.Settings.Default.UserName = txtUserName.Text;
 
                     this.Hide();
-                    if (txtusername.Text == "admin")
+                    if (txtUserName.Text == "admin")
                     {
                         HomeAdmin home = new HomeAdmin();
                         home.ShowDialog();
@@ -73,7 +72,7 @@ namespace zaklad_mechaniki_samochodowej
                 else
                 {
                     dr.Close();
-                    MessageBox.Show("NIe istnieje użytkownik o takim loginie lub haśle .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Nie istnieje użytkownik o takim loginie lub haśle.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

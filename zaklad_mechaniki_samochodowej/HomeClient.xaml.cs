@@ -2,6 +2,9 @@
 using System.IO;
 using System;
 using System.Windows;
+using System.Windows.Documents;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace zaklad_mechaniki_samochodowej
 {
@@ -17,11 +20,22 @@ namespace zaklad_mechaniki_samochodowej
             InitializeComponent();
             Home_Load();
             AddText();
+            AddComboBoxBrands();
         }
 
         private void AddText()
         {
-            txtuser.Text = Properties.Settings.Default.nazwa_uzytkownika;
+            txtUserName.Text = Properties.Settings.Default.UserName;
+        }
+
+        private void AddComboBoxBrands()
+        {
+            List<string> brands = new List<string> { "Opel Mazda", "Mercedes", "Toyota", "Suzuki" , "Ford" }; // TODO Dodać zczytywanie rodzajów z bazy danych
+
+            foreach (string brand in brands)
+            {
+                comboBoxCarBrand.Items.Add(brand);
+            }
         }
 
         private void Home_Load()
@@ -45,11 +59,6 @@ namespace zaklad_mechaniki_samochodowej
             cn.Open();
         }
 
-/*        private void AddText()
-        {
-            txtnapis.Text = "Admininie co podać?";
-        }*/
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -58,6 +67,12 @@ namespace zaklad_mechaniki_samochodowej
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RemoveText(object sender, RoutedEventArgs e)
+        {
+            txtCarModel.Text = string.Empty;
+            txtCarModel.GotFocus -= RemoveText;
         }
     }
 }

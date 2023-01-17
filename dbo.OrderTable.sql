@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[OrderTable]
+(
+	[Id] INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+	[ClientId] INT FOREIGN KEY REFERENCES LoginTable(Id),
+    [Brand] NVARCHAR (50) NOT NULL,
+    [Model] NVARCHAR (50) NOT NULL,
+    [Fix] BIT DEFAULT ((0)) NOT NULL
+)
