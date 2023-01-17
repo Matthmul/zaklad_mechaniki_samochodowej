@@ -43,7 +43,7 @@ namespace zaklad_mechaniki_samochodowej
             cn.Open();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             Login login = new Login();
@@ -51,13 +51,13 @@ namespace zaklad_mechaniki_samochodowej
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
-            if (txtconfirmpassword.Password.ToString() != string.Empty || txtpassword.Password.ToString() != string.Empty || txtusername.Text != string.Empty)
+            if (txtConfirmPassword.Password.ToString() != string.Empty || txtPassword.Password.ToString() != string.Empty || txtUserName.Text != string.Empty)
             {
-                if (txtpassword.Password.ToString() == txtconfirmpassword.Password.ToString())
+                if (txtPassword.Password.ToString() == txtConfirmPassword.Password.ToString())
                 {
-                    cmd = new SqlCommand("select * from LoginTable where Username='" + txtusername.Text + "'", cn);
+                    cmd = new SqlCommand("select * from LoginTable where Username='" + txtUserName.Text + "'", cn);
                     dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
@@ -68,8 +68,8 @@ namespace zaklad_mechaniki_samochodowej
                     {
                         dr.Close();
                         cmd = new SqlCommand("INSERT INTO LoginTable (Username, Password) VALUES (@Username,@Password)", cn);
-                        cmd.Parameters.AddWithValue("Username", txtusername.Text);
-                        cmd.Parameters.AddWithValue("Password", txtpassword.Password.ToString());
+                        cmd.Parameters.AddWithValue("Username", txtUserName.Text);
+                        cmd.Parameters.AddWithValue("Password", txtPassword.Password.ToString());
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Twoje konto zostało utworzone. Zaloguj się teraz.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

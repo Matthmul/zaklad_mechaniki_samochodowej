@@ -43,13 +43,13 @@ namespace zaklad_mechaniki_samochodowej
             cn.Open();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             
-            if (txtpassword.Password.ToString() != string.Empty || txtUserName.Text != string.Empty)
+            if (txtPassword.Password.ToString() != string.Empty || txtUserName.Text != string.Empty)
             {
 
-                cmd = new SqlCommand("select * from LoginTable where Username='" + txtUserName.Text + "' and Password='" + txtpassword.Password.ToString() + "'", cn);
+                cmd = new SqlCommand("select * from LoginTable where Username='" + txtUserName.Text + "' and Password='" + txtPassword.Password.ToString() + "'", cn);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
@@ -82,7 +82,7 @@ namespace zaklad_mechaniki_samochodowej
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             Registration registration = new Registration();
