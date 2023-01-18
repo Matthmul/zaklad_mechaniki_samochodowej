@@ -76,7 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="HomeAdmin.xaml">
+    <Page Include="Admin\HomeAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,9 +96,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HomeAdmin.xaml.cs">
+    <Compile Include="Admin\HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderState.cs" />
     <Compile Include="HomeClient.xaml.cs">
       <DependentUpon>HomeClient.xaml</DependentUpon>
     </Compile>
