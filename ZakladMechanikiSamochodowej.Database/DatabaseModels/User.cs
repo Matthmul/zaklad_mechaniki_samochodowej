@@ -1,6 +1,6 @@
 ﻿namespace ZakladMechanikiSamochodowej.Database.DatabaseModels
 {
-    public partial class Users
+    public partial class User
     {
         public int Id { get; set; }
         public string? Username { get; set; }

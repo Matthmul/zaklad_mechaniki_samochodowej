@@ -1,8 +1,9 @@
 ﻿namespace ZakladMechanikiSamochodowej.Database.DatabaseModels
 {
-    public partial class Orders
+    public partial class Order
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public string? Brand { get; set; }
         public string? Model { get; set; }
         public bool Fix { get; set; } = false;
@@ -16,7 +17,5 @@
         public string? RegistrationNumber { get; set; }
         public int EngineCapacity { get; set; }
         public OrderState OrderState { get; set; }
-
-        public virtual ICollection<Users> User { get; } = new List<Users>();
     }
 }

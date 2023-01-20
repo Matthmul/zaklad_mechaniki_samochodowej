@@ -14,5 +14,5 @@
     [ProductionYear]        INT NOT NULL,
     [RegistrationNumber]    NVARCHAR (50) NOT NULL,
     [EngineCapacity]        INT NOT NULL,
-    [OrderState]            NVARCHAR (50) NOT NULL,
+    [OrderState]            INT NOT NULL,
 )

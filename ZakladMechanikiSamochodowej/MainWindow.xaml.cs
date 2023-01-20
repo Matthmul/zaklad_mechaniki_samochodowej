@@ -1,8 +1,7 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using ZakladMechanikiSamochodowej.Authentication;
+using ZakladMechanikiSamochodowej.Database.DatabaseActions;
+using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 
 namespace ZakladMechanikiSamochodowej
 {
@@ -18,43 +17,16 @@ namespace ZakladMechanikiSamochodowej
         }
         private void InitDatabase()
         {
-            SqlCommand cmd;
-            SqlConnection cn;
-            SqlDataReader dr;
-
-            string dirStr = AppDomain.CurrentDomain.BaseDirectory;
-            var dir = Directory.GetParent(dirStr);
-            while (dir.Parent.Exists)
+            if (LoginTableActions.TryGetUserByName("admin") == null)
             {
-                if (dir.GetFiles("Database.mdf").Length != 0)
+                LoginTableActions.SaveUser(new User
                 {
-                    dirStr = dir.ToString() + "\\Database.mdf";
-                    break;
-                }
-                dir = dir.Parent;
+                    Username = "admin",
+                    Password = "admin",
+                    IsAdmin = true
+                });
             }
-            if (!dir.Parent.Exists)
-            {
-                return;
-            }
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + dirStr + ";Integrated Security=True");
-            cn.Open();
 
-            cmd = new SqlCommand("select * from LoginTable where Username='admin'", cn);
-            dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                dr.Close();
-            }
-            else
-            {
-                dr.Close();
-                cmd = new SqlCommand("INSERT INTO LoginTable (Username, Password, IsAdmin) VALUES (@Username,@Password,@IsAdmin)", cn);
-                cmd.Parameters.AddWithValue("Username", "admin");
-                cmd.Parameters.AddWithValue("Password", "admin");
-                cmd.Parameters.AddWithValue("IsAdmin", 1);
-                cmd.ExecuteNonQuery();
-            }
             this.Hide();
             Login login = new();
             login.ShowDialog();

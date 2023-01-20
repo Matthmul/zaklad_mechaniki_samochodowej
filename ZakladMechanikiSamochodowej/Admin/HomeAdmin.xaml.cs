@@ -1,8 +1,7 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using ZakladMechanikiSamochodowej.Database.DatabaseActions;
 using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 
 namespace ZakladMechanikiSamochodowej.Admin
@@ -12,36 +11,10 @@ namespace ZakladMechanikiSamochodowej.Admin
     /// </summary>
     public partial class HomeAdmin : Window
     {
-        SqlCommand cmd;
-        SqlConnection cn;
-        SqlDataReader dr;
-
         public HomeAdmin()
         {
             InitializeComponent();
-            Home_Load();
             LoadOrders(listBoxOrdes);
-        }
-
-        private void Home_Load()
-        {
-            string dirStr = AppDomain.CurrentDomain.BaseDirectory;
-            var dir = Directory.GetParent(dirStr);
-            while (dir.Parent.Exists)
-            {
-                if (dir.GetFiles("Database.mdf").Length != 0)
-                {
-                    dirStr = dir.ToString() + "\\Database.mdf";
-                    break;
-                }
-                dir = dir.Parent;
-            }
-            if (!dir.Parent.Exists)
-            {
-                return;
-            }
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + dirStr + ";Integrated Security=True");
-            cn.Open();
         }
 
         private void ButtonClientModification_Click(object sender, RoutedEventArgs e)
@@ -51,69 +24,38 @@ namespace ZakladMechanikiSamochodowej.Admin
 
         private void AddFakeOrders()
         {
-            cmd = new SqlCommand("INSERT INTO OrderTable (ClientId, Brand, Model, Fix, NrVIN, ProductionYear, RegistrationNumber, EngineCapacity, OrderState) VALUES (@ClientId, @Brand, @Model, @Fix, @NrVIN, @ProductionYear, @RegistrationNumber, @EngineCapacity, @OrderState)", cn);
-            cmd.Parameters.AddWithValue("ClientId", 1);
-            cmd.Parameters.AddWithValue("Brand", "Opel");
-            cmd.Parameters.AddWithValue("Model", "Astra");
-            cmd.Parameters.AddWithValue("Fix", 1);
-            cmd.Parameters.AddWithValue("NrVIN", "565456564");
-            cmd.Parameters.AddWithValue("ProductionYear", 1);
-            cmd.Parameters.AddWithValue("RegistrationNumber", "AS231356");
-            cmd.Parameters.AddWithValue("EngineCapacity", 1);
-            cmd.Parameters.AddWithValue("OrderState", OrderState.NEW.ToString());
-            cmd.ExecuteNonQuery();
-            cmd.ExecuteNonQuery();
+            OrdersTableActions.SaveOrder(new Order
+            {
+                ClientId = 1,
+                Brand = "Opel",
+                Model = "Astra",
+                Fix = true,
+                NrVIN = "565456564",
+                ProductionYear = 1,
+                RegistrationNumber = "AS231356",
+                EngineCapacity = 1,
+                OrderState = OrderState.NEW
+            });
         }
 
         private void LoadOrders(ListBox lb)
         {
-            AddFakeOrders(); // TODO Usunąć to potem
+            //AddFakeOrders(); // TODO Usunąć to potem
 
-            cmd = new SqlCommand("select * from OrderTable where OrderState='" + OrderState.NEW.ToString() + "'", cn);
-            using (dr = cmd.ExecuteReader())
-            {
-                if (dr != null)
-                {
-                    while (dr.Read())
-                    {
-                        ListBoxItem lbi = new ListBoxItem
-                        {
-                            Tag = dr["Id"],
-                            Content = "Zlecenie na " + dr["Brand"] + " " + dr["Model"]
-                        };
-                        lb.Items.Add(lbi);
-                    }
-                }
-            }
+            List<Order> newOrders = OrdersTableActions.GetOrdersByOrderState(OrderState.NEW);
 
-            cmd = new SqlCommand("select COUNT(*) as OrdersNumber from OrderTable where OrderState='" + OrderState.NEW.ToString() + "'", cn);
-            using (dr = cmd.ExecuteReader())
-            {
-                if (dr != null && dr.Read())
-                {
-                    var numNewOrders = dr["OrdersNumber"];
-                    txtNewOrderNumber.Text = numNewOrders.ToString();
-                }
-            }
+            txtNewOrderNumber.Text = newOrders.Count.ToString();
+            txtInProgressOrderNumber.Text = OrdersTableActions.GetOrdersByOrderState(OrderState.IN_PROGRESS).Count.ToString();
+            txtClosedOrderNumber.Text = OrdersTableActions.GetOrdersByOrderState(OrderState.CLOSED).Count.ToString();
 
-            cmd = new SqlCommand("select COUNT(*) as OrdersNumber from OrderTable where OrderState='" + OrderState.IN_PROGRESS.ToString() + "'", cn);
-            using (dr = cmd.ExecuteReader())
+            foreach (var order in newOrders)
             {
-                if (dr != null && dr.Read())
+                ListBoxItem lbi = new()
                 {
-                    var numNewOrders = dr["OrdersNumber"];
-                    txtInProgressOrderNumber.Text = numNewOrders.ToString();
-                }
-            }
-
-            cmd = new SqlCommand("select COUNT(*) as OrdersNumber from OrderTable where OrderState='" + OrderState.CLOSED.ToString() + "'", cn);
-            using (dr = cmd.ExecuteReader())
-            {
-                if (dr != null && dr.Read())
-                {
-                    var numNewOrders = dr["OrdersNumber"];
-                    txtClosedOrderNumber.Text = numNewOrders.ToString();
-                }
+                    Tag = order.Id,
+                    Content = "Zlecenie na " + order.Brand + " " + order.Model
+                };
+                lb.Items.Add(lbi);
             }
         }
 
