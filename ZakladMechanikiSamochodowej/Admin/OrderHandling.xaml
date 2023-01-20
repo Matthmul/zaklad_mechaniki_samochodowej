@@ -1,0 +1,90 @@
+﻿<Window x:Class="ZakladMechanikiSamochodowej.Admin.OrderHandling"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
+		mc:Ignorable="d"
+		Title="OrderHandling" Height="450" Width="800">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50" />
+				<RowDefinition Height="1*" />
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0" Content="Informacje o samochodzie" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="1*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+				<Grid Grid.Row="0" Grid.Column="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Marka pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                    <TextBox Grid.Row="1" Name="txtCarBrand" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
+                </Grid>
+				<Grid Grid.Row="0" Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<Label Grid.Row="0" Content="Model pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                    <TextBox Grid.Row="1" Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
+				</Grid>
+				<Grid Grid.Row="0" Grid.Column="2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<Label Grid.Row="0" Content="Pojemność (cm^3)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14"  IsEnabled="False"/>
+				</Grid>
+				<Grid Grid.Row="1" Grid.Column="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<Label Grid.Row="0" Content="NR VIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
+				</Grid>
+				<Grid Grid.Row="1" Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<Label Content="Rok produkcji pojazdu" FontSize="12" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
+
+				</Grid>
+				<Grid Grid.Row="1" Grid.Column="2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+					<Label Grid.Row="0" Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+                    <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
+			</Grid>
+			</Grid>
+		</Grid>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50" />
+				<RowDefinition Height="1*" />
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0" Content="Dostępne akcje" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+		</Grid>
+	</Grid>
+</Window>

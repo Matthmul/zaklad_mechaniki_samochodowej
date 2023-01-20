@@ -34,7 +34,7 @@ namespace ZakladMechanikiSamochodowej.Authentication
 						Client.HomeClient home = new();
 						home.ShowDialog();
 					}
-					this.Close();
+					Close();
 				}
 				else
 				{
@@ -50,10 +50,10 @@ namespace ZakladMechanikiSamochodowej.Authentication
 
 		private void ButtonRegister_Click(object sender, RoutedEventArgs e)
 		{
-			this.Hide();
-			Registration registration = new Registration();
+			Hide();
+			Registration registration = new();
 			registration.ShowDialog();
-			this.Close();
+			Close();
 		}
 	}
 }

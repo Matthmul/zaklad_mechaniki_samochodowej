@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ZakladMechanikiSamochodowej.Database.DatabaseActions;
@@ -11,6 +13,8 @@ namespace ZakladMechanikiSamochodowej.Admin
     /// </summary>
     public partial class HomeAdmin : Window
     {
+        private List<Order>[] _orders = new List<Order>[Enum.GetNames(typeof(OrderState)).Length];
+
         public HomeAdmin()
         {
             InitializeComponent();
@@ -42,21 +46,28 @@ namespace ZakladMechanikiSamochodowej.Admin
         {
             //AddFakeOrders(); // TODO Usunąć to potem
 
-            List<Order> newOrders = OrdersTableActions.GetOrdersByOrderState(OrderState.NEW);
+            _orders[(int)OrderState.NEW] = ProvideOrder(lb, OrderState.NEW, txtNewOrderNumber);
+            _orders[(int)OrderState.IN_PROGRESS] = ProvideOrder(lb, OrderState.IN_PROGRESS, txtInProgressOrderNumber);
+            _orders[(int)OrderState.CLOSED] = ProvideOrder(lb, OrderState.CLOSED, txtClosedOrderNumber);
+        }
 
-            txtNewOrderNumber.Text = newOrders.Count.ToString();
-            txtInProgressOrderNumber.Text = OrdersTableActions.GetOrdersByOrderState(OrderState.IN_PROGRESS).Count.ToString();
-            txtClosedOrderNumber.Text = OrdersTableActions.GetOrdersByOrderState(OrderState.CLOSED).Count.ToString();
+        private List<Order> ProvideOrder(ListBox lb, OrderState orderState, TextBlock txtNumber)
+        {
+            List<Order> orderList = OrdersTableActions.GetOrdersByOrderState(orderState);
 
-            foreach (var order in newOrders)
+            txtNumber.Text = orderList.Count.ToString();
+
+            foreach (var order in orderList)
             {
                 ListBoxItem lbi = new()
                 {
-                    Tag = order.Id,
+                    Tag = new Tuple<int, OrderState>(order.Id, orderState),
                     Content = "Zlecenie na " + order.Brand + " " + order.Model
                 };
                 lb.Items.Add(lbi);
             }
+
+            return orderList;
         }
 
         private void ListBoxOrders_DoubleClick(object sender, RoutedEventArgs e)
@@ -64,8 +75,26 @@ namespace ZakladMechanikiSamochodowej.Admin
             ListBox lb = ((ListBox)sender);
             if (lb.SelectedItem != null)
             {
-                ListBoxItem lbi = ((ListBoxItem)lb.SelectedItem);
-                MessageBox.Show(lbi.Tag.ToString());
+                Tuple<int, OrderState> tagTup = (Tuple<int, OrderState>)((ListBoxItem)lb.SelectedItem).Tag;
+                try
+                {
+                    var ordersTab = _orders[(int)tagTup.Item2];
+                    var order = ordersTab.SingleOrDefault(o => o.Id == tagTup.Item1, new Order
+                    {
+                        ClientId = 0,
+                        Brand = "-----",
+                        Model = "-----",
+                        NrVIN = "------",
+                        ProductionYear = 0,
+                        RegistrationNumber = "-------",
+                        EngineCapacity = 0,
+                        OrderState = OrderState.CLOSED
+                    });
+                    OrderHandling home = new(order);
+                    home.Show();
+                } catch {
+                    MessageBox.Show("Błąd podczas ładowania zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

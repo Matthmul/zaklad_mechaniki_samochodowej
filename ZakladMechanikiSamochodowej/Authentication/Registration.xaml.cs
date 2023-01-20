@@ -16,10 +16,10 @@ namespace ZakladMechanikiSamochodowej.Authentication
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
             Login login = new();
             login.ShowDialog();
-            this.Close();
+            Close();
         }
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
