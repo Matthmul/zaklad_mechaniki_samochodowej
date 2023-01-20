@@ -25,7 +25,7 @@ namespace ZakladMechanikiSamochodowej.Admin
         {
 
         }
-
+/*
         private void AddFakeOrders()
         {
             OrdersTableActions.SaveOrder(new Order
@@ -33,7 +33,7 @@ namespace ZakladMechanikiSamochodowej.Admin
             {
                 Fix = true
             });
-        }
+        }*/
 
         private void LoadOrders(ListBox lb)
         {

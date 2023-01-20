@@ -13,11 +13,13 @@ namespace ZakladMechanikiSamochodowej.Database
 
 		public virtual DbSet<Order> OrderTable { get; set; }
 
-		// TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public virtual DbSet<Cars> CarsTable { get; set; }
+
+        // TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 			=> optionsBuilder.UseSqlServer(
-				@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\ZakladMechanikiSamochodowej\Database.mdf;Integrated Security=True",
-				providerOptions => { providerOptions.EnableRetryOnFailure(); });
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\WOJTBART\SOURCE\REPOS\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\BIN\DEBUG\DATABASE.MDF;Integrated Security=True",
+                providerOptions => { providerOptions.EnableRetryOnFailure(); });
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -83,7 +85,18 @@ namespace ZakladMechanikiSamochodowej.Database
                     .HasColumnName("OrderState");
 			});
 
-			OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<Cars>(entity =>
+            {
+                entity.Property(e => e.CarModel)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CarModel");
+                entity.Property(e => e.Brand)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            OnModelCreatingPartial(modelBuilder);
 		}
 
 		partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
