@@ -20,9 +20,8 @@ namespace ZakladMechanikiSamochodowej
             if (LoginTableActions.TryGetUserByName("admin") == null)
             {
                 LoginTableActions.SaveUser(new User
+                    ("admin", "admin")
                 {
-                    Username = "admin",
-                    Password = "admin",
                     IsAdmin = true
                 });
             }

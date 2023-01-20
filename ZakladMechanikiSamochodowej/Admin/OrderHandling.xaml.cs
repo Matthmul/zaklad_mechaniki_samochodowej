@@ -32,12 +32,12 @@ namespace ZakladMechanikiSamochodowej.Admin
 
         private void LoadOrder()
         {
-            txtCarBrand.Text = _orderInfo.Brand ?? "---------";
-            txtCarModel.Text = _orderInfo.Model ?? "---------";
+            txtCarBrand.Text = _orderInfo.Brand;
+            txtCarModel.Text = _orderInfo.Model;
             txtEngineCapacity.Text = _orderInfo.EngineCapacity.ToString();
-            txtNrVin.Text = _orderInfo.NrVIN ?? "---------";
+            txtNrVin.Text = _orderInfo.NrVIN;
             txtProductionYear.Text = _orderInfo.ProductionYear.ToString();
-            txtRegistrationNumber.Text = _orderInfo.RegistrationNumber ?? "---------";
+            txtRegistrationNumber.Text = _orderInfo.RegistrationNumber;
         }
     }
 }

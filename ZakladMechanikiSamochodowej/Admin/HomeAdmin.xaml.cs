@@ -29,16 +29,9 @@ namespace ZakladMechanikiSamochodowej.Admin
         private void AddFakeOrders()
         {
             OrdersTableActions.SaveOrder(new Order
+                (1, "Opel", "Astra", "565456564", 1, "AS231356", 1, OrderState.NEW)
             {
-                ClientId = 1,
-                Brand = "Opel",
-                Model = "Astra",
-                Fix = true,
-                NrVIN = "565456564",
-                ProductionYear = 1,
-                RegistrationNumber = "AS231356",
-                EngineCapacity = 1,
-                OrderState = OrderState.NEW
+                Fix = true
             });
         }
 
@@ -80,19 +73,12 @@ namespace ZakladMechanikiSamochodowej.Admin
                 {
                     var ordersTab = _orders[(int)tagTup.Item2];
                     var order = ordersTab.SingleOrDefault(o => o.Id == tagTup.Item1, new Order
-                    {
-                        ClientId = 0,
-                        Brand = "-----",
-                        Model = "-----",
-                        NrVIN = "------",
-                        ProductionYear = 0,
-                        RegistrationNumber = "-------",
-                        EngineCapacity = 0,
-                        OrderState = OrderState.CLOSED
-                    });
+                        (0, "-----", "-----", "------", 0, "-------", 0, OrderState.CLOSED));
                     OrderHandling home = new(order);
                     home.Show();
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("Błąd podczas ładowania zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

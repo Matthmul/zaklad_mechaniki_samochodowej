@@ -36,10 +36,7 @@ namespace ZakladMechanikiSamochodowej.Authentication
                     else
                     {
                         LoginTableActions.SaveUser(new User
-                        {
-                            Username = userName,
-                            Password = txtPassword.Password.ToString()
-                        });
+                            (userName, txtPassword.Password.ToString()));
                         MessageBox.Show("Twoje konto zostało utworzone. Zaloguj się teraz.", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
