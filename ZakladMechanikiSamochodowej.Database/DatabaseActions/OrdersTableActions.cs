@@ -16,5 +16,12 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
             using var dbContext = new DatabaseConnection();
             return dbContext.OrderTable.Where(o => o.OrderState == orderState).ToList();
         }
+
+        public static void UpdateOrder(Order order)
+        {
+            using var dbContext = new DatabaseConnection();
+            dbContext.Update(order);
+            dbContext.SaveChanges();
+        }
     }
 }

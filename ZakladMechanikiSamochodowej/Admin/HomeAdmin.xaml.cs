@@ -25,20 +25,9 @@ namespace ZakladMechanikiSamochodowej.Admin
         {
 
         }
-/*
-        private void AddFakeOrders()
-        {
-            OrdersTableActions.SaveOrder(new Order
-                (1, "Opel", "Astra", "565456564", 1, "AS231356", 1, OrderState.NEW)
-            {
-                Fix = true
-            });
-        }*/
 
         private void LoadOrders(ListBox lb)
         {
-            //AddFakeOrders(); // TODO Usunąć to potem
-
             _orders[(int)OrderState.NEW] = ProvideOrder(lb, OrderState.NEW, txtNewOrderNumber);
             _orders[(int)OrderState.IN_PROGRESS] = ProvideOrder(lb, OrderState.IN_PROGRESS, txtInProgressOrderNumber);
             _orders[(int)OrderState.CLOSED] = ProvideOrder(lb, OrderState.CLOSED, txtClosedOrderNumber);

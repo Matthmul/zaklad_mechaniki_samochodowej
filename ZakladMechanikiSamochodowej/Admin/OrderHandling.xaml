@@ -5,10 +5,11 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
 		mc:Ignorable="d"
+        Closing="OrderWindow_Closing"
 		Title="OrderHandling" Height="450" Width="800">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="3*" />
 			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
 		<Grid Grid.Column="0">
@@ -76,15 +77,41 @@
 					</Grid.RowDefinitions>
 					<Label Grid.Row="0" Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
                     <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
-			</Grid>
+				</Grid>
 			</Grid>
 		</Grid>
 		<Grid Grid.Column="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="50" />
-				<RowDefinition Height="1*" />
-			</Grid.RowDefinitions>
-			<Label Grid.Row="0" Content="Dostępne akcje" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-		</Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
+                    <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Aktualny status zamówienia</TextBlock>
+                </Label>
+                <ComboBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Name="comboBoxOrderState" IsEnabled="False"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+					<RowDefinition Height="50" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+                <Label Grid.Row="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
+                    <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Dostępne akcje</TextBlock>
+                </Label>
+                <Grid Grid.Row="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*"/>
+					</Grid.RowDefinitions>
+					<Button Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonEditCar_Click">Edytuj dane samochodu</Button>
+					<Button Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonEditOrderState_Click">Edytuj status zlecenia</Button>
+				</Grid>
+            </Grid>
+        </Grid>
 	</Grid>
 </Window>
