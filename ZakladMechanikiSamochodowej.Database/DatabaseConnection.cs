@@ -13,13 +13,14 @@ namespace ZakladMechanikiSamochodowej.Database
 
 		public virtual DbSet<Order> OrderTable { get; set; }
 
-        public virtual DbSet<Cars> CarsTable { get; set; }
+		public virtual DbSet<Cars> CarsTable { get; set; }
 
-        // TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		// TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 			=> optionsBuilder.UseSqlServer(
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\WOJTBART\SOURCE\REPOS\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\BIN\DEBUG\DATABASE.MDF;Integrated Security=True",
-                providerOptions => { providerOptions.EnableRetryOnFailure(); });
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\ZakladMechanikiSamochodowej\Database.mdf;Integrated Security=True",
+				//@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\WOJTBART\SOURCE\REPOS\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\BIN\DEBUG\DATABASE.MDF;Integrated Security=True",
+				providerOptions => { providerOptions.EnableRetryOnFailure(); });
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -69,34 +70,35 @@ namespace ZakladMechanikiSamochodowej.Database
 					.HasColumnName("Training");
 				entity.Property(e => e.OrderingParts)
 					.HasColumnName("OrderingParts");
-                entity.Property(e => e.NrVIN)
+				entity.Property(e => e.NrVIN)
 					.HasMaxLength(50)
 					.IsUnicode(false)
 					.HasColumnName("NrVIN");
-                entity.Property(e => e.ProductionYear)
+				entity.Property(e => e.ProductionYear)
 					.HasColumnName("ProductionYear");
-                entity.Property(e => e.RegistrationNumber)
+				entity.Property(e => e.RegistrationNumber)
 					.HasMaxLength(50)
 					.IsUnicode(false)
 					.HasColumnName("RegistrationNumber");
-                entity.Property(e => e.EngineCapacity)
+				entity.Property(e => e.EngineCapacity)
 					.HasColumnName("EngineCapacity");
-                entity.Property(e => e.OrderState)
-                    .HasColumnName("OrderState");
+				entity.Property(e => e.OrderState)
+					.HasColumnName("OrderState");
 			});
 
-            modelBuilder.Entity<Cars>(entity =>
-            {
-                entity.Property(e => e.CarModel)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("CarModel");
-                entity.Property(e => e.Brand)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
+			modelBuilder.Entity<Cars>(entity =>
+			{
+				entity.Property(e => e.CarModel)
+					.HasMaxLength(50)
+					.IsUnicode(false)
+					.HasColumnName("CarModel");
+				entity.Property(e => e.Brand)
+					.HasMaxLength(50)
+					.IsUnicode(false)
+					.HasColumnName("Brand");
+			});
 
-            OnModelCreatingPartial(modelBuilder);
+			OnModelCreatingPartial(modelBuilder);
 		}
 
 		partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

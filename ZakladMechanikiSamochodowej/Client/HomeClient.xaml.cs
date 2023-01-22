@@ -85,21 +85,21 @@ namespace ZakladMechanikiSamochodowej.Client
                     int clientID = user.Id;
 
                     OrdersTableActions.SaveOrder(new Order
+                    (clientID,
+                    brand,
+                    txtCarModel.Text.ToString(),
+                    txtNrVin.Text.ToString(),
+                    Int32.Parse(txtProductionYear.Text.ToString()),
+                    txtRegistrationNumber.Text.ToString(),
+                    Int32.Parse(txtEngineCapacity.Text.ToString()),
+                    OrderState.NEW)
                     {
-                        ClientId = clientID,
-                        Brand = brand,
-                        Model = txtCarModel.Text.ToString(),
                         Fix = fix,
                         Review = review,
                         Assembly = assembly,
                         Training = training,
                         TechnicalConsultation = technicalConsultation,
-                        OrderingParts = orderingParts,
-                        NrVIN = txtNrVin.Text.ToString(),
-                        ProductionYear = Int32.Parse(txtProductionYear.Text.ToString()),
-                        RegistrationNumber = txtRegistrationNumber.Text.ToString(),
-                        EngineCapacity = Int32.Parse(txtEngineCapacity.Text.ToString()),
-                        OrderState = OrderState.NEW
+                        OrderingParts = orderingParts
                     });
                     MessageBox.Show("Twoje zlecenie zostało wysłane do mechanika. Sprawdź status twojego zlecenia!", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
