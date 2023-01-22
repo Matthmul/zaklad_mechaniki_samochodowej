@@ -6,6 +6,8 @@ using System.Linq;
 using ZakladMechanikiSamochodowej.Database.DatabaseActions;
 using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 using System.Diagnostics.Metrics;
+using Microsoft.IdentityModel.Tokens;
+using System.Windows.Documents;
 
 namespace ZakladMechanikiSamochodowej.Client
 {
@@ -14,6 +16,7 @@ namespace ZakladMechanikiSamochodowej.Client
     /// </summary>
     public partial class HomeClient : Window
     {
+        private List <string> checkBoxesChanged=new List<string>();
         public HomeClient()
         {
             InitializeComponent();
@@ -45,8 +48,39 @@ namespace ZakladMechanikiSamochodowej.Client
             bool orderingParts = false;
             bool training = false;
 
-            string checkedCHeckbox = RetrieveCheckboxesAndGetOne();
-            switch (checkedCHeckbox)
+            if (txtCarModel.Text == "BRAK" || txtNrVin.Text == "BRAK" || txtProductionYear.Text == "BRAK" ||
+               txtRegistrationNumber.Text == "BRAK" || txtEngineCapacity.Text == "BRAK")
+            {
+                
+                
+                    MessageBox.Show("Nie wpisano wszystkich wymaganych wartosci", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                
+                
+            }
+
+            if (!int.TryParse(txtProductionYear.Text.ToString(), out _) || !int.TryParse(txtEngineCapacity.Text.ToString(), out _))
+            {
+                MessageBox.Show("Nie można przekonwertować wartości, wpisz prawidłową liczbe", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //checkboxy
+            var list = gridCheckBoxes.Children.OfType<CheckBox>().Where(x => x.IsChecked == true);
+
+            var str = "";
+            if (list.IsNullOrEmpty())
+            {
+                MessageBox.Show("Musisz wybrać jakąś czynność.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+
+                str = list.ElementAt(0).Name;
+            }
+
+            switch (str)
             {
                 case "Fix":
                     fix = true;
@@ -68,14 +102,20 @@ namespace ZakladMechanikiSamochodowej.Client
                     break;
                 default:
                     Console.WriteLine($"Przetworzono nieprawiłdową wartosc checkboxa");
-                    break;
+                    MessageBox.Show($"Przetworzono nieprawiłdową wartosc checkboxa");
+                    return;
+            }
+            if(comboBoxCarBrand.SelectedItem.ToString()== "System.Windows.Controls.ComboBoxItem: -------------")
+            {
+                MessageBox.Show("Musisz wybrać jakąś markę pojazdu.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             if (txtCarModel.Text.ToString() != string.Empty || txtNrVin.Text.ToString() != string.Empty || txtProductionYear.Text.ToString() != string.Empty ||
                txtRegistrationNumber.Text.ToString() != string.Empty || txtEngineCapacity.Text.ToString() != string.Empty || comboBoxCarBrand.SelectedItem.ToString() != string.Empty)
             {
                 string brand = comboBoxCarBrand.SelectedItem.ToString();
-
+           
 
                 var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
 
@@ -102,6 +142,7 @@ namespace ZakladMechanikiSamochodowej.Client
                         OrderingParts = orderingParts
                     });
                     MessageBox.Show("Twoje zlecenie zostało wysłane do mechanika. Sprawdź status twojego zlecenia!", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Properties.Settings.Default.OrderState = 0;
                 }
                 else
                 {
@@ -115,21 +156,65 @@ namespace ZakladMechanikiSamochodowej.Client
             }
         }
 
-        public string RetrieveCheckboxesAndGetOne()
-        {
-            var list = gridCheckBoxes.Children.OfType<CheckBox>().Where(x => x.IsChecked == true);
-            return list.ElementAt(0).Name;
-        }
-
+        //nie znalazłem innego sposobu xD
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            Assembly.IsChecked = false;
+            Training.IsChecked = false;
+            OrderingParts.IsChecked = false;
+            Review.IsChecked = false;
+            TechnicalConsultation.IsChecked = false;
 
         }
 
-        private void RemoveText(object sender, RoutedEventArgs e)
+        private void CheckBox_Checked2(object sender, RoutedEventArgs e)
         {
-            /*txtCarModel.Text = string.Empty;
-			txtCarModel.GotFocus -= RemoveText;*/
+            Assembly.IsChecked = false;
+            Training.IsChecked = false;
+            OrderingParts.IsChecked = false;
+            Fix.IsChecked = false;
+            TechnicalConsultation.IsChecked = false;
+        }
+        private void CheckBox_Checked3(object sender, RoutedEventArgs e)
+        {
+            Review.IsChecked = false;
+            Training.IsChecked = false;
+            OrderingParts.IsChecked = false;
+            Fix.IsChecked = false;
+            TechnicalConsultation.IsChecked = false;
+        }
+
+        private void CheckBox_Checked4(object sender, RoutedEventArgs e)
+        {
+            Review.IsChecked = false;
+            Training.IsChecked = false;
+            OrderingParts.IsChecked = false;
+            Fix.IsChecked = false;
+            Assembly.IsChecked = false;
+        }
+        private void CheckBox_Checked5(object sender, RoutedEventArgs e)
+        {
+            Review.IsChecked = false;
+            TechnicalConsultation.IsChecked = false;
+            OrderingParts.IsChecked = false;
+            Fix.IsChecked = false;
+            Assembly.IsChecked = false;
+        }
+        private void CheckBox_Checked6(object sender, RoutedEventArgs e)
+        {
+            Review.IsChecked = false;
+            TechnicalConsultation.IsChecked = false;
+            Training.IsChecked = false;
+            Fix.IsChecked = false;
+            Assembly.IsChecked = false;
+        }
+
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= TextBox_GotFocus;
         }
 
         private void txtEngineCapacity_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -159,7 +244,12 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
-
+            int value = Properties.Settings.Default.OrderState;
+            //MessageBox.Show(value.ToString());
+            OrderState status=(OrderState)value;
+            statusText.Text= status.ToString();
         }
+
+       
     }
 }

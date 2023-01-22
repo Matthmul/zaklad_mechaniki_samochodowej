@@ -18,8 +18,8 @@ namespace ZakladMechanikiSamochodowej.Database
 		// TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 			=> optionsBuilder.UseSqlServer(
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\ZakladMechanikiSamochodowej\Database.mdf;Integrated Security=True",
-				//@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\WOJTBART\SOURCE\REPOS\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\BIN\DEBUG\DATABASE.MDF;Integrated Security=True",
+                //@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=H:\zaklad_mechaniki_samochodowej\ZakladMechanikiSamochodowej\Database.mdf;Integrated Security=True",
+				@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\WOJTBART\SOURCE\REPOS\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\ZAKLAD_MECHANIKI_SAMOCHODOWEJ\BIN\DEBUG\DATABASE.MDF;Integrated Security=True",
 				providerOptions => { providerOptions.EnableRetryOnFailure(); });
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -88,7 +88,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Button Style="{StaticResource ButtonStyle}"  HorizontalAlignment="Center"  VerticalAlignment="Center"  Click="StatusButton_Click" >
-                        <TextBlock  Text="Zobacz status twojego zlecenia" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="48" Width="125" ><Run Language="pl-pl"/></TextBlock>
+                        <TextBlock FontSize="14"  Text="Zobacz status najnowszego zlecenia" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="48" Width="136" ><Run Language="pl-pl"/></TextBlock>
                     </Button>
                 </Grid>
             </Grid>
@@ -103,13 +103,22 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="CheckBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
                 <Label Grid.Column="0" Grid.Row="0" Content="Co chcesz zrobić?" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <CheckBox x:Name="Fix"  Grid.Column="0" Grid.Row="1" Content="Naprawa" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,19,0"/>
-                <CheckBox x:Name="Review" Grid.Column="0" Grid.Row="2" Content="Przegląd" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,19,0"/>
-                <CheckBox x:Name="Assembly" Grid.Column="0" Grid.Row="3" Content="Montaż" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,35,0"/>
-                <CheckBox x:Name="TechnicalConsultation" Grid.Column="1" Grid.Row="1" Content="Konsultacja techniczna" Checked="CheckBox_Checked" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                <CheckBox x:Name="Training" Grid.Column="1" Grid.Row="2" Content="Szkolenie" Checked="CheckBox_Checked" VerticalAlignment="Center" Margin="10,0,70,0"/>
-                <CheckBox x:Name="OrderingParts" Grid.Column="1" Grid.Row="3" Content="Zamawianie części" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="10,0,30,0" RenderTransformOrigin="0.389,0.445"/>
+                <CheckBox x:Name="Fix"  Grid.Column="0" Grid.Row="1" Content="Naprawa" VerticalAlignment="Center" Checked="CheckBox_Checked"  Margin="61,0,19,0"/>
+                <CheckBox x:Name="Review" Grid.Column="0" Grid.Row="2" Content="Przegląd" VerticalAlignment="Center" Checked="CheckBox_Checked2" Margin="61,0,19,0"/>
+                <CheckBox x:Name="Assembly" Grid.Column="0" Grid.Row="3" Content="Montaż" VerticalAlignment="Center" Checked="CheckBox_Checked3" Margin="61,0,35,0"/>
+                <CheckBox x:Name="TechnicalConsultation" Grid.Column="1" Grid.Row="1" Content="Konsultacja techniczna" Checked="CheckBox_Checked4" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <CheckBox x:Name="Training" Grid.Column="1" Grid.Row="2" Content="Szkolenie" Checked="CheckBox_Checked5" VerticalAlignment="Center" Margin="10,0,70,0"/>
+                <CheckBox x:Name="OrderingParts" Grid.Column="1" Grid.Row="3" Content="Zamawianie części" VerticalAlignment="Center" Checked="CheckBox_Checked6" Margin="10,0,30,0" RenderTransformOrigin="0.389,0.445"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
@@ -133,7 +142,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Model pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Row="1" Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Model" VerticalAlignment="Center" FontSize="14"  TextChanged="txtCarModel_TextChanged" Width="116"/>
+                    <TextBox Grid.Row="1" Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" Text="BRAK" VerticalAlignment="Center" FontSize="14"  TextChanged="txtCarModel_TextChanged" Width="116" GotFocus="TextBox_GotFocus"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -141,7 +150,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Pojemność (cm^3)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" Text="POjemność" VerticalAlignment="Center" FontSize="14"  TextChanged="txtEngineCapacity_TextChanged" Width="87"/>
+                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" Text="BRAK" VerticalAlignment="Center" FontSize="14"  TextChanged="txtEngineCapacity_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="3">
@@ -156,7 +165,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="NR VIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"  Text="BRAK" FontSize="14"  TextChanged="txtNrVIN_TextChanged" Width="87"/>
+                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"  Text="BRAK" FontSize="14"  TextChanged="txtNrVIN_TextChanged" Width="87" GotFocus="TextBox_GotFocus" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -164,7 +173,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Content="Rok produkcji pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Width="157" />
-                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK" TextChanged="txtPRoductionYear_TextChanged" Width="87"/>
+                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK" TextChanged="txtPRoductionYear_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
 
                 </Grid>
                 <Grid Grid.Row="2">
@@ -173,7 +182,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-                    <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK"  TextChanged="txtRegistrationNumber_TextChanged" Width="87"/>
+                    <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK"  TextChanged="txtRegistrationNumber_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -188,6 +197,8 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
+
+            <TextBlock x:Name="statusText" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Margin="33,10,0,0" TextWrapping="Wrap" Text="" TextAlignment="Center" VerticalAlignment="Top" Width="100" Height="36" Foreground="Blue"/>
         </Grid>
     </Grid>
 </Window>
