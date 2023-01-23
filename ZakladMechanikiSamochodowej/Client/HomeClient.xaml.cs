@@ -14,9 +14,13 @@ namespace ZakladMechanikiSamochodowej.Client
     /// <summary>
     /// Logika interakcji dla klasy HomeClient.xaml
     /// </summary>
+    /// 
+
     public partial class HomeClient : Window
     {
-        private List <string> checkBoxesChanged=new List<string>();
+        
+        private Order order;
+
         public HomeClient()
         {
             InitializeComponent();
@@ -26,12 +30,13 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void AddText()
         {
-            txtUserName.Text = Properties.Settings.Default.UserName;
+            txtUserNameText.Text = Properties.Settings.Default.UserName;
         }
 
         private void AddComboBoxBrands()
         {
             List<Cars> carsList = CarsTableActions.GetAllCars();
+
             foreach (var item in carsList)
             {
                 comboBoxCarBrand.Items.Add(item.CarModel);
@@ -40,7 +45,6 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             bool fix = false;
             bool review = false;
             bool assembly = false;
@@ -51,32 +55,33 @@ namespace ZakladMechanikiSamochodowej.Client
             if (txtCarModel.Text == "BRAK" || txtNrVin.Text == "BRAK" || txtProductionYear.Text == "BRAK" ||
                txtRegistrationNumber.Text == "BRAK" || txtEngineCapacity.Text == "BRAK")
             {
-                
-                
-                    MessageBox.Show("Nie wpisano wszystkich wymaganych wartosci", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                
-                
+                MessageBox.Show("Nie wpisano wszystkich wymaganych wartosci", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             if (!int.TryParse(txtProductionYear.Text.ToString(), out _) || !int.TryParse(txtEngineCapacity.Text.ToString(), out _))
             {
-                MessageBox.Show("Nie można przekonwertować wartości, wpisz prawidłową liczbe", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie można przekonwertować wartości, wpisz prawidłową liczbe!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            //checkboxy
-            var list = gridCheckBoxes.Children.OfType<CheckBox>().Where(x => x.IsChecked == true);
+            if (comboBoxCarBrand.SelectedItem.ToString() == "System.Windows.Controls.ComboBoxItem: -------------")
+            {
+                MessageBox.Show("Musisz wybrać jakąś markę pojazdu!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            //checkboxy, które są na true
+            var list = gridCheckBoxes.Children.OfType<CheckBox>().Where(x => x.IsChecked == true);
             var str = "";
+
             if (list.IsNullOrEmpty())
             {
-                MessageBox.Show("Musisz wybrać jakąś czynność.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Musisz wybrać jakąś czynność!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else
             {
-
                 str = list.ElementAt(0).Name;
             }
 
@@ -101,31 +106,22 @@ namespace ZakladMechanikiSamochodowej.Client
                     training = true;
                     break;
                 default:
-                    Console.WriteLine($"Przetworzono nieprawiłdową wartosc checkboxa");
                     MessageBox.Show($"Przetworzono nieprawiłdową wartosc checkboxa");
                     return;
             }
-            if(comboBoxCarBrand.SelectedItem.ToString()== "System.Windows.Controls.ComboBoxItem: -------------")
-            {
-                MessageBox.Show("Musisz wybrać jakąś markę pojazdu.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
 
-            if (txtCarModel.Text.ToString() != string.Empty || txtNrVin.Text.ToString() != string.Empty || txtProductionYear.Text.ToString() != string.Empty ||
-               txtRegistrationNumber.Text.ToString() != string.Empty || txtEngineCapacity.Text.ToString() != string.Empty || comboBoxCarBrand.SelectedItem.ToString() != string.Empty)
+            if (txtCarModel.Text.ToString() != string.Empty || txtNrVin.Text.ToString() != string.Empty || txtProductionYear.Text.ToString() != string.Empty 
+                || txtRegistrationNumber.Text.ToString() != string.Empty || txtEngineCapacity.Text.ToString() != string.Empty || 
+                comboBoxCarBrand.SelectedItem.ToString() != string.Empty)
             {
                 string brand = comboBoxCarBrand.SelectedItem.ToString();
-           
-
                 var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
-
 
                 if (user != null && brand != string.Empty)
                 {
                     int clientID = user.Id;
 
-                    OrdersTableActions.SaveOrder(new Order
-                    (clientID,
+                    order = new Order(clientID,
                     brand,
                     txtCarModel.Text.ToString(),
                     txtNrVin.Text.ToString(),
@@ -140,13 +136,15 @@ namespace ZakladMechanikiSamochodowej.Client
                         Training = training,
                         TechnicalConsultation = technicalConsultation,
                         OrderingParts = orderingParts
-                    });
+                    };
+
+                    OrdersTableActions.SaveOrder(order);
                     MessageBox.Show("Twoje zlecenie zostało wysłane do mechanika. Sprawdź status twojego zlecenia!", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Properties.Settings.Default.OrderState = 0;
                 }
                 else
                 {
-                    MessageBox.Show("Nie istnieje użytkownik  lub marka jest nieprawidłowa.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Nie istnieje taki użytkownik lub marka jest nieprawidłowa.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
 
             }
@@ -156,7 +154,7 @@ namespace ZakladMechanikiSamochodowej.Client
             }
         }
 
-        //nie znalazłem innego sposobu xD
+        //po kliknięciu jednego checkboxa inne się odznaczają
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             Assembly.IsChecked = false;
@@ -209,7 +207,6 @@ namespace ZakladMechanikiSamochodowej.Client
             Assembly.IsChecked = false;
         }
 
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
@@ -244,10 +241,12 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
-            int value = Properties.Settings.Default.OrderState;
-            //MessageBox.Show(value.ToString());
-            OrderState status=(OrderState)value;
-            statusText.Text= status.ToString();
+            if (order== null)
+            {
+                MessageBox.Show("Nie stworzyłeś jeszcze żadnego zamówienia", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            statusText.Text= order.OrderState.ToString();
         }
 
        

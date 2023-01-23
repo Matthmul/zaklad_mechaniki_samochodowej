@@ -32,20 +32,7 @@ namespace ZakladMechanikiSamochodowej.Properties {
             }
             set
             {
-                (this["UserName"]) = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int OrderState {
-            get {
-                return ((int)(this["OrderState"]));
-            }
-            set
-            {
-                (this["OrderState"]) = value;
+                ((this["UserName"])) = value;
             }
         }
     }

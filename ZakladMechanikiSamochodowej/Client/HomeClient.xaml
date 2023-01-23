@@ -65,7 +65,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Content="Użytkownik" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" x:Name="txtUserName" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
