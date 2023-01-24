@@ -40,6 +40,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Liczba zleceń" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
             <Grid Grid.Row="1">
@@ -64,6 +65,14 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="Zakończone" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                <TextBlock Grid.Row="1" x:Name="txtDoneOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK"/>
+            </Grid>            
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Zamknięte" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
                 <TextBlock Grid.Row="1" x:Name="txtClosedOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK"/>
             </Grid>
         </Grid>

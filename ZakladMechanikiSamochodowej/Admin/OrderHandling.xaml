@@ -9,10 +9,31 @@
 		Title="OrderHandling" Height="450" Width="800">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="2.5*" />
 			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
-		<Grid Grid.Column="0">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="57" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje do wykonania</TextBlock>
+            </Label>
+            <Grid Grid.Row="1">
+                <ListBox Name="listBoxActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
+            </Grid>
+            <Label Grid.Row="2" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje wykonane</TextBlock>
+            </Label>
+            <Grid Grid.Row="3">
+                <ListBox Name="listBoxDoneActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
+            </Grid>
+        </Grid>
+		<Grid Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="50" />
 				<RowDefinition Height="1*" />
@@ -20,7 +41,6 @@
 			<Label Grid.Row="0" Content="Informacje o samochodzie" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			<Grid Grid.Row="1">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="1*" />
 					<ColumnDefinition Width="1*" />
 					<ColumnDefinition Width="1*" />
 				</Grid.ColumnDefinitions>
@@ -34,7 +54,9 @@
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Marka pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Marka pojazdu</TextBlock>
+                    </Label>
                     <TextBox Grid.Row="1" Name="txtCarBrand" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
                 </Grid>
 				<Grid Grid.Row="0" Grid.Column="1">
@@ -42,45 +64,55 @@
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-					<Label Grid.Row="0" Content="Model pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Model pojazdu</TextBlock>
+                    </Label>
                     <TextBox Grid.Row="1" Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
-				</Grid>
-				<Grid Grid.Row="0" Grid.Column="2">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="1*" />
-						<RowDefinition Height="1*" />
-					</Grid.RowDefinitions>
-					<Label Grid.Row="0" Content="Pojemność (cm^3)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
-                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14"  IsEnabled="False"/>
 				</Grid>
 				<Grid Grid.Row="1" Grid.Column="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-					<Label Grid.Row="0" Content="NR VIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
-                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Pojemność (cm^3)</TextBlock>
+                    </Label>
+                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14"  IsEnabled="False"/>
 				</Grid>
 				<Grid Grid.Row="1" Grid.Column="1">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-					<Label Content="Rok produkcji pojazdu" FontSize="12" VerticalAlignment="Center" />
-                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
-
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Nr VIN</TextBlock>
+                    </Label>
+                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" IsEnabled="False"/>
 				</Grid>
-				<Grid Grid.Row="1" Grid.Column="2">
+				<Grid Grid.Row="2" Grid.Column="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
-					<Label Grid.Row="0" Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+                    <Label FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Rok produkcji pojazdu</TextBlock>
+                    </Label>
+                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
+
+				</Grid>
+				<Grid Grid.Row="2" Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*" />
+						<RowDefinition Height="1*" />
+					</Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
+                        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Nr Rejestracyjny</TextBlock>
+                    </Label>
                     <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" IsEnabled="False"/>
 				</Grid>
 			</Grid>
 		</Grid>
-		<Grid Grid.Column="1">
+		<Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -107,9 +139,11 @@
 					<Grid.RowDefinitions>
 						<RowDefinition Height="1*" />
 						<RowDefinition Height="1*"/>
+						<RowDefinition Height="1*"/>
 					</Grid.RowDefinitions>
 					<Button Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonEditCar_Click">Edytuj dane samochodu</Button>
 					<Button Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonEditOrderState_Click">Edytuj status zlecenia</Button>
+					<Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonSaveDoneActions_Click">Zapisz wykonane akcje</Button>
 				</Grid>
             </Grid>
         </Grid>

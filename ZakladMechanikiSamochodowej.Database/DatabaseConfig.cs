@@ -2,6 +2,6 @@
 {
     public class DatabaseConfig
     {
-        public string SqlString { get; set; }
+        public string? SqlString { get; set; }
     }
 }

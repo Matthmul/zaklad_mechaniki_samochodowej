@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,11 +15,14 @@ namespace ZakladMechanikiSamochodowej.Admin
     public partial class OrderHandling : Window
     {
         private Order _orderInfo;
+        private HomeAdmin _homeAdmin;
+        bool savedActions = true;
 
-        public OrderHandling(Order orderInfo)
+        public OrderHandling(Order orderInfo, HomeAdmin ha)
         {
             InitializeComponent();
             _orderInfo = orderInfo;
+            _homeAdmin = ha;
 
             PrepareComboBox();
             LoadOrder();
@@ -34,6 +36,23 @@ namespace ZakladMechanikiSamochodowej.Admin
             }
         }
 
+        private void AddActionToBeDone(string action, ListBox lb)
+        {
+            ListBoxItem lbi = new()
+            {
+                Content = action
+            };
+            ContextMenu cm = new();
+            MenuItem mi = new()
+            {
+                Header = "Wykonano"
+            };
+            mi.Click += DoneOrNotDone_Click;
+            cm.Items.Add(mi);
+            lbi.ContextMenu = cm;
+            lb.Items.Add(lbi);
+        }
+
         private void LoadOrder()
         {
             txtCarBrand.Text = _orderInfo.Brand;
@@ -43,6 +62,8 @@ namespace ZakladMechanikiSamochodowej.Admin
             txtProductionYear.Text = _orderInfo.ProductionYear.ToString();
             txtRegistrationNumber.Text = _orderInfo.RegistrationNumber;
             comboBoxOrderState.SelectedIndex = (int)_orderInfo.OrderState;
+
+            UpdateActionsToDo();
         }
 
         private bool TryParseText(TextBox tb, out int oiToSave)
@@ -113,6 +134,13 @@ namespace ZakladMechanikiSamochodowej.Admin
             }
         }
 
+        private void SetNewOrderState(string newState)
+        {
+            _orderInfo.OrderState = (OrderState)Enum.Parse(typeof(OrderState), newState);
+            OrdersTableActions.UpdateOrder(_orderInfo);
+            comboBoxOrderState.SelectedIndex = (int)_orderInfo.OrderState;
+        }
+
         private void ButtonEditOrderState_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -122,8 +150,7 @@ namespace ZakladMechanikiSamochodowej.Admin
                 comboBoxOrderState.IsEnabled = false;
                 btn.Content = "Edytuj status zlecenia";
                 string selectedVal = (string)comboBoxOrderState.SelectedValue;
-                _orderInfo.OrderState = (OrderState)Enum.Parse(typeof(OrderState), selectedVal);
-                OrdersTableActions.UpdateOrder(_orderInfo);
+                SetNewOrderState(selectedVal);
             }
             else
             {
@@ -132,11 +159,125 @@ namespace ZakladMechanikiSamochodowej.Admin
             }
         }
 
+        private void UpdateActionsToDo()
+        {
+            listBoxActions.Items.Clear();
+
+            if (_orderInfo.Fix) AddActionToBeDone("Fix", listBoxActions);
+            if (_orderInfo.Review) AddActionToBeDone("Review", listBoxActions);
+            if (_orderInfo.Assembly) AddActionToBeDone("Assembly", listBoxActions);
+            if (_orderInfo.TechnicalConsultation) AddActionToBeDone("TechnicalConsultation", listBoxActions);
+            if (_orderInfo.Training) AddActionToBeDone("Training", listBoxActions);
+            if (_orderInfo.OrderingParts) AddActionToBeDone("OrderingParts", listBoxActions);
+        }
+
+        private void ButtonSaveDoneActions_Click(object sender, RoutedEventArgs e)
+        {
+            OrdersTableActions.UpdateOrder(_orderInfo);
+            string msg = "Dane zostały zapisane.";
+            MessageBox.Show(
+              msg,
+              "Dane zapisane",
+              MessageBoxButton.OK,
+              MessageBoxImage.Information);
+            savedActions = true;
+            UpdateActionsToDo();
+
+            if (listBoxActions.Items.Count == 0 && _orderInfo.OrderState != OrderState.CLOSED)
+            {
+                SetNewOrderState(OrderState.DONE.ToString());
+            }
+            else if (listBoxDoneActions.Items.Count == 0 && _orderInfo.OrderState == OrderState.DONE)
+            {
+                SetNewOrderState(OrderState.IN_PROGRESS.ToString());
+            }
+        }
+
+        private void ListBoxActions_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            ListBox lb = ((ListBox)sender);
+            if (lb.SelectedItem != null)
+            {
+                object item = ((ListBoxItem)lb.SelectedItem).ContextMenu.Items.GetItemAt(0);
+                DoneOrNotDone_Click(item, e);
+            }
+        }
+
+        private void DoneOrNotDone_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem mi = (MenuItem)sender;
+            ListBoxItem? lbi = null;
+            if ((string)mi.Header == "Wykonano" && listBoxActions.SelectedItem != null)
+            {
+                lbi = (ListBoxItem)listBoxActions.SelectedItem;
+                listBoxActions.Items.Remove(lbi);
+                mi.Header = "Nie wykonano";
+                listBoxDoneActions.Items.Add(lbi);
+            }
+            else if (listBoxDoneActions.SelectedItem != null)
+            {
+                lbi = (ListBoxItem)listBoxDoneActions.SelectedItem;
+                listBoxDoneActions.Items.Remove(lbi);
+                mi.Header = "Wykonano";
+                listBoxActions.Items.Add(lbi);
+            }
+
+            if (lbi != null)
+            {
+                SetDoneAction(lbi.Content.ToString());
+            }
+        }
+
+        private void SetDoneAction(string? action)
+        {
+            if (action != null)
+            {
+                savedActions = false;
+
+                switch (action)
+                {
+                    case "Fix":
+                        _orderInfo.Fix = !_orderInfo.Fix;
+                        break;
+                    case "Review":
+                        _orderInfo.Review = !_orderInfo.Review;
+                        break;
+                    case "Assembly":
+                        _orderInfo.Assembly = !_orderInfo.Assembly;
+                        break;
+                    case "TechnicalConsultation":
+                        _orderInfo.TechnicalConsultation = !_orderInfo.TechnicalConsultation;
+                        break;
+                    case "Training":
+                        _orderInfo.Training = !_orderInfo.Training;
+                        break;
+                    case "OrderingParts":
+                        _orderInfo.OrderingParts = !_orderInfo.OrderingParts;
+                        break;
+                    default:
+                        MessageBox.Show(
+                          "Error",
+                          "Nieznana akcja.",
+                          MessageBoxButton.OK,
+                          MessageBoxImage.Error);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                  "Error",
+                  "Nieznana akcja.",
+                  MessageBoxButton.OK,
+                  MessageBoxImage.Error);
+            }
+        }
+
         private bool CheckIfDataSaved()
         {
             return comboBoxOrderState.IsEnabled || txtCarBrand.IsEnabled || txtCarModel.IsEnabled ||
                 txtEngineCapacity.IsEnabled || txtNrVin.IsEnabled || txtProductionYear.IsEnabled ||
-                txtRegistrationNumber.IsEnabled;
+                txtRegistrationNumber.IsEnabled || !savedActions;
         }
 
         private void OrderWindow_Closing(object sender, CancelEventArgs e)
@@ -153,8 +294,10 @@ namespace ZakladMechanikiSamochodowej.Admin
                 if (result == MessageBoxResult.No)
                 {
                     e.Cancel = true;
+                    return;
                 }
             }
+            _homeAdmin.RefreshOrders();
         }
     }
 }

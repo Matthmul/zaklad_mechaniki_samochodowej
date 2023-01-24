@@ -30,6 +30,7 @@ namespace ZakladMechanikiSamochodowej.Admin
         {
             _orders[(int)OrderState.NEW] = ProvideOrder(lb, OrderState.NEW, txtNewOrderNumber);
             _orders[(int)OrderState.IN_PROGRESS] = ProvideOrder(lb, OrderState.IN_PROGRESS, txtInProgressOrderNumber);
+            _orders[(int)OrderState.DONE] = ProvideOrder(lb, OrderState.DONE, txtDoneOrderNumber);
             _orders[(int)OrderState.CLOSED] = ProvideOrder(lb, OrderState.CLOSED, txtClosedOrderNumber);
         }
 
@@ -38,6 +39,13 @@ namespace ZakladMechanikiSamochodowej.Admin
             List<Order> orderList = OrdersTableActions.GetOrdersByOrderState(orderState);
 
             txtNumber.Text = orderList.Count.ToString();
+
+            ListBoxItem lbiState = new()
+            {
+                Content = "Zlecenia " + orderState.ToString(),
+                IsEnabled = false
+            };
+            lb.Items.Add(lbiState);
 
             foreach (var order in orderList)
             {
@@ -63,7 +71,7 @@ namespace ZakladMechanikiSamochodowej.Admin
                     var ordersTab = _orders[(int)tagTup.Item2];
                     var order = ordersTab.SingleOrDefault(o => o.Id == tagTup.Item1, new Order
                         (0, "-----", "-----", "------", 0, "-------", 0, OrderState.CLOSED));
-                    OrderHandling home = new(order);
+                    OrderHandling home = new(order, this);
                     home.Show();
                 }
                 catch
@@ -74,6 +82,11 @@ namespace ZakladMechanikiSamochodowej.Admin
         }
 
         private void ButtonRefreshOrder_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshOrders();
+        }
+
+        public void RefreshOrders()
         {
             listBoxOrdes.Items.Clear();
 

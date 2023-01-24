@@ -4,6 +4,7 @@
     {
         NEW,
         IN_PROGRESS,
+        DONE,
         CLOSED,
     }
 }
