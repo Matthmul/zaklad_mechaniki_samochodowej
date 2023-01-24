@@ -299,5 +299,15 @@ namespace ZakladMechanikiSamochodowej.Admin
             }
             _homeAdmin.RefreshOrders();
         }
+
+        private void ButtonUserInfo_Click(object sender, RoutedEventArgs e)
+        {
+            User? user = LoginTableActions.GetUserById(_orderInfo.ClientId);
+            if (user != null) 
+            {
+                AccountEdition accountEdition = new(user);
+                accountEdition.Show();
+            }
+        }
     }
 }

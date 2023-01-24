@@ -50,10 +50,13 @@ namespace ZakladMechanikiSamochodowej.Admin
 
             foreach (var order in orderList)
             {
+                User? user = LoginTableActions.GetUserById(order.ClientId);
+
                 ListBoxItem lbi = new()
                 {
                     Tag = new Tuple<int, OrderState>(order.Id, orderState),
-                    Content = "Zlecenie na " + order.Brand + " " + order.Model
+                    Content = "Zlecenie na " + order.Brand + " " + order.Model +
+                    " złożone przez " + (user != null ? user.Username : "")
                 };
                 lb.Items.Add(lbi);
             }

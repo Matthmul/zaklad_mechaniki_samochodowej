@@ -23,6 +23,12 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
             return dbContext.LoginTable.SingleOrDefault(u => u.Username == name);
         }
 
+        public static User? GetUserById(int id)
+        {
+            using var dbContext = new DatabaseConnection();
+            return dbContext.LoginTable.SingleOrDefault(u => u.Id == id);
+        }
+
         public static List<User> GetAllNewUsers()
         {
             using var dbContext = new DatabaseConnection();
