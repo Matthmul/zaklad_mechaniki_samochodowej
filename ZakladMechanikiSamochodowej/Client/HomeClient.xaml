@@ -215,7 +215,7 @@
                 </Button.RenderTransform>
             </Button>
 
-            <TextBlock x:Name="statusText" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Margin="33,10,0,0" TextWrapping="Wrap" Text="" TextAlignment="Center" VerticalAlignment="Top" Width="100" Height="36" Foreground="Blue"/>
+            <TextBlock   x:Name="statusText" FontWeight="Bold"  FontSize="15" HorizontalAlignment="Left" Margin="23,10,0,0" TextWrapping="Wrap" Text="" TextAlignment="Center" VerticalAlignment="Top" Width="116" Height="36" Foreground="Blue"/>
         </Grid>
     </Grid>
 </Window>

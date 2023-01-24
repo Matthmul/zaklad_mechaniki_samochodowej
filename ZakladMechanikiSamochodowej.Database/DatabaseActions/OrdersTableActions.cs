@@ -23,5 +23,11 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
             dbContext.Update(order);
             dbContext.SaveChanges();
         }
+
+        public static List<Order> GetLastOrder(int userId)
+        {
+            using var dbContext = new DatabaseConnection();
+            return dbContext.OrderTable.Where(o => o.ClientId == userId).OrderByDescending(c => c.Id).Take(1).ToList().ToList();
+        }
     }
 }

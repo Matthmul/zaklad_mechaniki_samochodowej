@@ -257,12 +257,16 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
-            if (order== null)
+            var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            List<Order> orderState = OrdersTableActions.GetLastOrder(user.Id);
+            if (orderState.Count() == 0 || orderState == null)
             {
                 MessageBox.Show("Nie stworzyłeś jeszcze żadnego zamówienia", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            statusText.Text= order.OrderState.ToString();
+
+
+            statusText.Text= orderState[0].OrderState.ToString();
         }
 
         private void AddMailTelephoneButton_Click(object sender, RoutedEventArgs e)
