@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="AccountsService" Height="450" Width="800">
+        Title="AccountsService" Height="450" Width="1045">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -27,12 +27,50 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="75" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" x:Name="searchPhrase"/>
+                    <TextBox Grid.Column="0" x:Name="searchPhrase" FontSize="16"/>
                     <Button Grid.Column="1" Click="ButtonSearchAccount_Click">
                         <TextBlock Text="Wyszukaj konto" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button>
                 </Grid>
-                <ListView Grid.Row="1" Name="listViewFoundAccounts" MouseDoubleClick="ListViewFoundAccounts_DoubleClick" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                <ListView Grid.Row="1" Name="listViewFoundAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn DisplayMemberBinding="{Binding Username}">
+                                <GridViewColumnHeader>
+                                    Nazwa użytkownika
+                                    <GridViewColumnHeader.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Rosnąco" Click="ListViewFoundAccountsAscending_Click"/>
+                                            <MenuItem Header="Malejąco" Click="ListViewFoundAccountsDescending_Click"/>
+                                        </ContextMenu>
+                                    </GridViewColumnHeader.ContextMenu>
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Mail">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding EmialAddress}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Telefon"/>
+                            <GridViewColumn Header="Edytuj">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ButtonEditUser_Click">Edytuj</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Usuń">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ButtonDeleteUser_Click">Usuń</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
@@ -49,7 +87,45 @@
                 <Button Grid.Row="0" Click="ButtonRefreshNewAccounts_Click">
                     <TextBlock Text="Odśwież listę" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
-                <ListView Grid.Row="1" Name="listViewNewAccounts" MouseDoubleClick="ListViewNewAccounts_DoubleClick" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                <ListView Grid.Row="1" Name="listViewNewAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true">
+                            <GridViewColumn DisplayMemberBinding="{Binding Username}">
+                                <GridViewColumnHeader>
+                                    Nazwa użytkownika
+                                    <GridViewColumnHeader.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Rosnąco" Click="ListViewNewAccountsAscending_Click"/>
+                                            <MenuItem Header="Malejąco" Click="ListViewNewAccountsDescending_Click"/>
+                                        </ContextMenu>
+                                    </GridViewColumnHeader.ContextMenu>
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Mail">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding EmialAddress}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Telefon"/>
+                            <GridViewColumn Header="Zatwierdź">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ButtonAcceptUser_Click">Zatwierdź</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>                            
+                            <GridViewColumn Header="Odrzuć">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ButtonDeleteUser_Click">Odrzuć</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </Grid>
     </Grid>
