@@ -43,6 +43,8 @@ namespace ZakladMechanikiSamochodowej.Database
                     .HasColumnName("EmialAddress");
                 entity.Property(e => e.IsAdmin)
                     .HasColumnName("IsAdmin");
+                entity.Property(e => e.IsNew)
+                    .HasColumnName("IsNew");
             });
 
             modelBuilder.Entity<Order>(entity =>

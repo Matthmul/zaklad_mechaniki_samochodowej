@@ -14,5 +14,6 @@
         public string? PhoneNumber { get; set; } = null;
         public string? EmialAddress { get; set; } = null;
         public bool IsAdmin { get; set; } = false;
+        public bool IsNew { get; set; } = true;
     }
 }

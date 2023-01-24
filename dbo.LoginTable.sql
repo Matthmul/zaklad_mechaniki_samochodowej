@@ -4,6 +4,7 @@
     [Password] NVARCHAR (50) NOT NULL,
     [PhoneNumber] NVARCHAR (9) NULL,
     [EmialAddress] NVARCHAR (50) NULL,
-    [IsAdmin] BIT DEFAULT ((0)) NOT NULL
+    [IsAdmin] BIT DEFAULT ((0)) NOT NULL,
+    [IsNew] BIT DEFAULT ((1)) NOT NULL
 );
 
