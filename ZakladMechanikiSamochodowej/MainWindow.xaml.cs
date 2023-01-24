@@ -26,10 +26,10 @@ namespace ZakladMechanikiSamochodowej
                 });
             }
 
-            this.Hide();
+            Hide();
             Login login = new();
             login.ShowDialog();
-            this.Close();
+            Close();
         }
     }
 }

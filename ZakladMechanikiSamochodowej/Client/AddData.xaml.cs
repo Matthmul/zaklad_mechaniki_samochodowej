@@ -53,8 +53,8 @@ namespace ZakladMechanikiSamochodowej.Client
            LoginTableActions.UpdateAdditonalData(user);
            MessageBox.Show("Poprawnie zmodyfikowano dane", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            Hide();
-
+           Hide();
+           Close();
         }
 
 
