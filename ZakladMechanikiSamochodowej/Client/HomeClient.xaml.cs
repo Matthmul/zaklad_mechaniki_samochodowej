@@ -31,15 +31,31 @@ namespace ZakladMechanikiSamochodowej.Client
         private void AddText()
         {
             txtUserNameText.Text = Properties.Settings.Default.UserName;
+            var user = LoginTableActions.TryGetUserByName(txtUserNameText.Text);
+
+            if (user.PhoneNumber == null || user.EmialAddress==null)
+            {
+                txtTelephoneNumber.Text = "-------";
+                txtEmail.Text = "-------";
+            }
+            else
+            {
+                txtTelephoneNumber.Text = user.PhoneNumber;
+                txtEmail.Text = user.EmialAddress;
+            }
+            
+
+
         }
 
         private void AddComboBoxBrands()
         {
-            List<Cars> carsList = CarsTableActions.GetAllCars();
+            List<string> carsList = new List<string>() { "Toyota", "Skoda", "Dacia", "Opel", "Hyundai", "Kia", "Volkswagen", "Renault", "Fiat" }; //CarsTableActions.GetAllCars();
 
             foreach (var item in carsList)
             {
-                comboBoxCarBrand.Items.Add(item.CarModel);
+                //comboBoxCarBrand.Items.Add(item.CarModel);
+                comboBoxCarBrand.Items.Add(item);
             }
         }
 
@@ -162,11 +178,11 @@ namespace ZakladMechanikiSamochodowej.Client
             OrderingParts.IsChecked = false;
             Review.IsChecked = false;
             TechnicalConsultation.IsChecked = false;
-
         }
 
         private void CheckBox_Checked2(object sender, RoutedEventArgs e)
         {
+
             Assembly.IsChecked = false;
             Training.IsChecked = false;
             OrderingParts.IsChecked = false;
@@ -249,6 +265,13 @@ namespace ZakladMechanikiSamochodowej.Client
             statusText.Text= order.OrderState.ToString();
         }
 
-       
+        private void AddMailTelephoneButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            AddData data = new();
+            data.ShowDialog();
+            AddText();
+            //Close();
+        }
     }
 }

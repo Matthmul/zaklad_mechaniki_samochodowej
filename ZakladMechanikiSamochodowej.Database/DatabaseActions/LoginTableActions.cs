@@ -34,5 +34,12 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
             using var dbContext = new DatabaseConnection();
             return dbContext.LoginTable.Where(u => u.IsNew == true).ToList();
         }
+
+        public static void UpdateAdditonalData(User user)
+        {
+            using var dbContext = new DatabaseConnection();
+            dbContext.LoginTable.Update(user);
+            dbContext.SaveChanges();
+        }
     }
 }

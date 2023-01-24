@@ -26,6 +26,18 @@
             </Style.Resources>
         </Style>
 
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Cornsilk" />
+            <Setter Property="Foreground" Value="MediumBlue" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="4" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
         <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="17" />
@@ -65,23 +77,28 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Content="Użytkownik" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Numer telefonu" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" x:Name="txtTelephoneNumber" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="24" Width="74"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <Label Content="Numer telefonu" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Grid.Row="2"/>
+                    <TextBlock x:Name="txtTelephoneNumber" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Top" Height="15" Width="85" Grid.Row="2" Margin="0,18,0,0" Grid.RowSpan="2"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <Label Content="Adres e-mail" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Width="58"/>
+                    <TextBlock x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center" Width="85" Grid.Row="1" Height="17" Margin="0,1,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+
                     </Grid.RowDefinitions>
-                    <Label Content="Adres e-mail" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="24" Width="74"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <Button Style="{StaticResource ButtonStyle2}"  HorizontalAlignment="Center"  VerticalAlignment="Center"  Click="AddMailTelephoneButton_Click" >
+                        <TextBlock   Text="Zmień telefon oraz adres e-mail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="37" Width="99" ><Run Language="pl-pl"/></TextBlock>
+                    </Button>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
