@@ -8,6 +8,8 @@ using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 using System.Diagnostics.Metrics;
 using Microsoft.IdentityModel.Tokens;
 using System.Windows.Documents;
+using System.Runtime.InteropServices;
+using System.Windows.Media;
 
 namespace ZakladMechanikiSamochodowej.Client
 {
@@ -31,7 +33,21 @@ namespace ZakladMechanikiSamochodowej.Client
         private void AddText()
         {
             txtUserNameText.Text = Properties.Settings.Default.UserName;
-            var user = LoginTableActions.TryGetUserByName(txtUserNameText.Text);
+
+            var isNewUser = checkUserState();
+
+            if (isNewUser)
+            {
+                txtUserNameText.Foreground = Brushes.Red;
+                isNewUserLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtUserNameText.Foreground = Brushes.Black;
+                isNewUserLabel.Visibility = Visibility.Hidden;
+            }
+
+            User? user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
 
             if (user.PhoneNumber == null || user.EmialAddress==null)
             {
@@ -63,6 +79,13 @@ namespace ZakladMechanikiSamochodowej.Client
             bool technicalConsultation = false;
             bool orderingParts = false;
             bool training = false;
+
+            var isNewUser=checkUserState();
+            if(isNewUser)
+            {
+                MessageBox.Show("Admin nie potwierdził jeszcze konta użytkownikowi, nie możesz wysłać zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (txtCarModel.Text == "BRAK" || txtNrVin.Text == "BRAK" || txtProductionYear.Text == "BRAK" ||
                txtRegistrationNumber.Text == "BRAK" || txtEngineCapacity.Text == "BRAK")
@@ -145,6 +168,12 @@ namespace ZakladMechanikiSamochodowej.Client
             {
                 MessageBox.Show("Wszystkie pola muszą być wypełnione.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private bool checkUserState()
+        {
+            var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            return user.IsNew;      
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

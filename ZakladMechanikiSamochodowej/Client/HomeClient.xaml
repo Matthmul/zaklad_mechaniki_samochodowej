@@ -78,6 +78,7 @@
                     </Grid.RowDefinitions>
                     <Label Content="Użytkownik" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
                     <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <Label  x:Name="isNewUserLabel" Content="!!!" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="101,2,0,0" Grid.Row="1"  Foreground="Red" Visibility="Hidden"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
