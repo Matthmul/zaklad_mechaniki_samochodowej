@@ -1,1 +1,0 @@
-ALTER TABLE [LoginTable] ADD [IsNew] BIT NOT NULL DEFAULT 0;
