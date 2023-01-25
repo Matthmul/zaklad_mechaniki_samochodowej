@@ -45,6 +45,8 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
         public static void RemoveUser(User user)
         {
             using var dbContext = new DatabaseConnection();
+
+            OrdersTableActions.RemoveAllUserOrders(user.Id);
             dbContext.Remove(user);
             dbContext.SaveChanges();
         }

@@ -14,9 +14,6 @@ namespace ZakladMechanikiSamochodowej.Database
 
         public virtual DbSet<Order> OrderTable { get; set; }
 
-        public virtual DbSet<Cars> CarsTable { get; set; }
-
-        // TODO Pomyslec czy da sie jakos ustawic inaczej sciezke do bazy
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlServer(JsonConvert.DeserializeObject<DatabaseConfig>(File.ReadAllText(".//databaseConfig.json"))?.SqlString,
                 providerOptions => { providerOptions.EnableRetryOnFailure(); });
@@ -85,18 +82,6 @@ namespace ZakladMechanikiSamochodowej.Database
                     .HasColumnName("EngineCapacity");
                 entity.Property(e => e.OrderState)
                     .HasColumnName("OrderState");
-            });
-
-            modelBuilder.Entity<Cars>(entity =>
-            {
-                entity.Property(e => e.CarModel)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("CarModel");
-                entity.Property(e => e.Brand)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("Brand");
             });
 
             OnModelCreatingPartial(modelBuilder);

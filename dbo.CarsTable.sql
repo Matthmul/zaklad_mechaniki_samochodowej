@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[CarsTable] (
-    [Id] INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
-    [CarModel] NVARCHAR (50) NOT NULL,
-    [Brand] NVARCHAR (50) NOT NULL
-);

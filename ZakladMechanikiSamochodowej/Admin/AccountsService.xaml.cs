@@ -13,9 +13,11 @@ namespace ZakladMechanikiSamochodowej.Admin
     /// </summary>
     public partial class AccountsService : Window
     {
-        public AccountsService()
+        private HomeAdmin _homeAdmin;
+        public AccountsService(HomeAdmin ha)
         {
             InitializeComponent();
+            _homeAdmin = ha;
             LoadNewUsers();
             LoadFindedUsers();
         }
@@ -99,6 +101,7 @@ namespace ZakladMechanikiSamochodowej.Admin
 
             LoadNewUsers();
             LoadFindedUsers();
+            _homeAdmin.RefreshOrders();
         }
 
         private void ButtonAcceptUser_Click(object sender, RoutedEventArgs e)

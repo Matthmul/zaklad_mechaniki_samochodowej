@@ -23,7 +23,7 @@ namespace ZakladMechanikiSamochodowej.Admin
 
         private void ButtonClientModification_Click(object sender, RoutedEventArgs e)
         {
-            AccountsService accountSrvice = new();
+            AccountsService accountSrvice = new(this);
             accountSrvice.Show();
         }
 
