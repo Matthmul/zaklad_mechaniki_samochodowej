@@ -50,7 +50,7 @@ namespace ZakladMechanikiSamochodowej.Client
             user.EmialAddress = email;
 
 
-           LoginTableActions.UpdateAdditonalData(user);
+           LoginTableActions.UpdateUserInformation(user);
            MessageBox.Show("Poprawnie zmodyfikowano dane", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
 
            Hide();

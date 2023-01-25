@@ -86,7 +86,7 @@ namespace ZakladMechanikiSamochodowej.Admin
         private void ButtonDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             User user = (User)((Button)sender).DataContext;
-            if (user.Username == "admin")
+            if (user.IsAdmin)
             {
                 MessageBox.Show(
                     "Nie można usunąć konta administratora.",

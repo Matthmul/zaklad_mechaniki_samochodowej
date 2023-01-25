@@ -24,7 +24,7 @@ namespace ZakladMechanikiSamochodowej.Authentication
 					Properties.Settings.Default.UserName = txtUserName.Text;
 
 					Hide();
-					if (txtUserName.Text == "admin")
+					if (user.IsAdmin)
 					{
 						Admin.HomeAdmin home = new();
 						home.ShowDialog();
