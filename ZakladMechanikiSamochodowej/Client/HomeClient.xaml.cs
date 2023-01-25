@@ -43,18 +43,14 @@ namespace ZakladMechanikiSamochodowej.Client
                 txtTelephoneNumber.Text = user.PhoneNumber;
                 txtEmail.Text = user.EmialAddress;
             }
-            
-
-
         }
 
         private void AddComboBoxBrands()
         {
-            List<string> carsList = new List<string>() { "Toyota", "Skoda", "Dacia", "Opel", "Hyundai", "Kia", "Volkswagen", "Renault", "Fiat" }; //CarsTableActions.GetAllCars();
+            List<string> carsList = new List<string>() { "Toyota", "Skoda", "Dacia", "Opel", "Hyundai", "Kia", "Volkswagen", "Renault", "Fiat" };
 
             foreach (var item in carsList)
             {
-                //comboBoxCarBrand.Items.Add(item.CarModel);
                 comboBoxCarBrand.Items.Add(item);
             }
         }
@@ -89,41 +85,22 @@ namespace ZakladMechanikiSamochodowej.Client
 
             //checkboxy, które są na true
             var list = gridCheckBoxes.Children.OfType<CheckBox>().Where(x => x.IsChecked == true);
-            var str = "";
 
             if (list.IsNullOrEmpty())
             {
                 MessageBox.Show("Musisz wybrać jakąś czynność!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            else
-            {
-                str = list.ElementAt(0).Name;
-            }
 
-            switch (str)
+            foreach (var item in list)
             {
-                case "Fix":
-                    fix = true;
-                    break;
-                case "Review":
-                    review = true;
-                    break;
-                case "Assembly":
-                    assembly = true;
-                    break;
-                case "TechnicalConsultation":
-                    technicalConsultation = true;
-                    break;
-                case "OrderingParts":
-                    orderingParts = true;
-                    break;
-                case "Training":
-                    training = true;
-                    break;
-                default:
-                    MessageBox.Show($"Przetworzono nieprawiłdową wartosc checkboxa");
-                    return;
+                if (item.Name == "Fix") fix = true;
+                else if (item.Name == "Review") review = true;
+                else if (item.Name == "Assembly") assembly = true;
+                else if (item.Name == "TechnicalConsultation") technicalConsultation = true;
+                else if (item.Name == "Training") training = true;
+                else if (item.Name == "OrderingParts") orderingParts = true;
+                else continue;
             }
 
             if (txtCarModel.Text.ToString() != string.Empty || txtNrVin.Text.ToString() != string.Empty || txtProductionYear.Text.ToString() != string.Empty 
@@ -170,57 +147,8 @@ namespace ZakladMechanikiSamochodowej.Client
             }
         }
 
-        //po kliknięciu jednego checkboxa inne się odznaczają
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Assembly.IsChecked = false;
-            Training.IsChecked = false;
-            OrderingParts.IsChecked = false;
-            Review.IsChecked = false;
-            TechnicalConsultation.IsChecked = false;
-        }
-
-        private void CheckBox_Checked2(object sender, RoutedEventArgs e)
-        {
-
-            Assembly.IsChecked = false;
-            Training.IsChecked = false;
-            OrderingParts.IsChecked = false;
-            Fix.IsChecked = false;
-            TechnicalConsultation.IsChecked = false;
-        }
-        private void CheckBox_Checked3(object sender, RoutedEventArgs e)
-        {
-            Review.IsChecked = false;
-            Training.IsChecked = false;
-            OrderingParts.IsChecked = false;
-            Fix.IsChecked = false;
-            TechnicalConsultation.IsChecked = false;
-        }
-
-        private void CheckBox_Checked4(object sender, RoutedEventArgs e)
-        {
-            Review.IsChecked = false;
-            Training.IsChecked = false;
-            OrderingParts.IsChecked = false;
-            Fix.IsChecked = false;
-            Assembly.IsChecked = false;
-        }
-        private void CheckBox_Checked5(object sender, RoutedEventArgs e)
-        {
-            Review.IsChecked = false;
-            TechnicalConsultation.IsChecked = false;
-            OrderingParts.IsChecked = false;
-            Fix.IsChecked = false;
-            Assembly.IsChecked = false;
-        }
-        private void CheckBox_Checked6(object sender, RoutedEventArgs e)
-        {
-            Review.IsChecked = false;
-            TechnicalConsultation.IsChecked = false;
-            Training.IsChecked = false;
-            Fix.IsChecked = false;
-            Assembly.IsChecked = false;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -232,27 +160,22 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void txtEngineCapacity_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
         }
 
         private void txtRegistrationNumber_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
         }
 
         private void txtPRoductionYear_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
         }
 
         private void txtNrVIN_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
         }
 
         private void txtCarModel_TextChanged(object sender, TextChangedEventArgs e)
         {
-
         }
 
         private void StatusButton_Click(object sender, RoutedEventArgs e)
@@ -265,13 +188,11 @@ namespace ZakladMechanikiSamochodowej.Client
                 return;
             }
 
-
             statusText.Text= orderState[0].OrderState.ToString();
         }
 
         private void AddMailTelephoneButton_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {     
             AddData data = new();
             data.ShowDialog();
             AddText();

@@ -89,7 +89,7 @@
                     <Label Content="Numer telefonu" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Grid.Row="2"/>
                     <TextBlock x:Name="txtTelephoneNumber" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Top" Height="15" Width="85" Grid.Row="2" Margin="0,18,0,0" Grid.RowSpan="2"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                     <Label Content="Adres e-mail" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Width="58"/>
-                    <TextBlock x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center" Width="85" Grid.Row="1" Height="17" Margin="0,1,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center" Width="103" Grid.Row="1" Height="17" Margin="0,1,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -130,12 +130,13 @@
                     </Style>
                 </Grid.Resources>
                 <Label Grid.Column="0" Grid.Row="0" Content="Co chcesz zrobić?" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Grid.Column="0" Grid.Row="0" Content="Można wybrać wiele czynności!" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="10" FontWeight="Normal" HorizontalAlignment="Left" Margin="90,49,0,0" Height="23" Width="147"/>
                 <CheckBox x:Name="Fix"  Grid.Column="0" Grid.Row="1" Content="Naprawa" VerticalAlignment="Center" Checked="CheckBox_Checked"  Margin="61,0,19,0"/>
-                <CheckBox x:Name="Review" Grid.Column="0" Grid.Row="2" Content="Przegląd" VerticalAlignment="Center" Checked="CheckBox_Checked2" Margin="61,0,19,0"/>
-                <CheckBox x:Name="Assembly" Grid.Column="0" Grid.Row="3" Content="Montaż" VerticalAlignment="Center" Checked="CheckBox_Checked3" Margin="61,0,35,0"/>
-                <CheckBox x:Name="TechnicalConsultation" Grid.Column="1" Grid.Row="1" Content="Konsultacja techniczna" Checked="CheckBox_Checked4" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                <CheckBox x:Name="Training" Grid.Column="1" Grid.Row="2" Content="Szkolenie" Checked="CheckBox_Checked5" VerticalAlignment="Center" Margin="10,0,70,0"/>
-                <CheckBox x:Name="OrderingParts" Grid.Column="1" Grid.Row="3" Content="Zamawianie części" VerticalAlignment="Center" Checked="CheckBox_Checked6" Margin="10,0,30,0" RenderTransformOrigin="0.389,0.445"/>
+                <CheckBox x:Name="Review" Grid.Column="0" Grid.Row="2" Content="Przegląd" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,19,0"/>
+                <CheckBox x:Name="Assembly" Grid.Column="0" Grid.Row="3" Content="Montaż" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,35,0"/>
+                <CheckBox x:Name="TechnicalConsultation" Grid.Column="1" Grid.Row="1" Content="Konsultacja techniczna" Checked="CheckBox_Checked" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <CheckBox x:Name="Training" Grid.Column="1" Grid.Row="2" Content="Szkolenie" Checked="CheckBox_Checked" VerticalAlignment="Center" Margin="10,0,70,0"/>
+                <CheckBox x:Name="OrderingParts" Grid.Column="1" Grid.Row="3" Content="Zamawianie części" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="10,0,30,0" RenderTransformOrigin="0.389,0.445"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
