@@ -58,13 +58,13 @@ namespace ZakladMechanikiSamochodowej.Client
         }
 
 
-        private bool IsValidEmailAddress(string s)
+        public bool IsValidEmailAddress(string s)
         {
             Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             return regex.IsMatch(s);
         }
 
-        private bool IsValidPhoneNumber(string s)
+        public bool IsValidPhoneNumber(string s)
         {
             Regex phoneNumpattern = new Regex(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$");
             return phoneNumpattern.IsMatch(s);

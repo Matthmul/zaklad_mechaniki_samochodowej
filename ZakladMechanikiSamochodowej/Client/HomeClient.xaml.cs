@@ -34,7 +34,7 @@ namespace ZakladMechanikiSamochodowej.Client
         {
             txtUserNameText.Text = Properties.Settings.Default.UserName;
 
-            var isNewUser = checkUserState();
+            var isNewUser = checkUserState(Properties.Settings.Default.UserName);
 
             if (isNewUser)
             {
@@ -47,7 +47,11 @@ namespace ZakladMechanikiSamochodowej.Client
                 isNewUserLabel.Visibility = Visibility.Hidden;
             }
 
-            User? user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            if(user?.Username == null) {
+                MessageBox.Show("Nie ma pobrać użytkownika o takim loginie", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (user.PhoneNumber == null || user.EmialAddress==null)
             {
@@ -80,7 +84,7 @@ namespace ZakladMechanikiSamochodowej.Client
             bool orderingParts = false;
             bool training = false;
 
-            var isNewUser=checkUserState();
+            var isNewUser=checkUserState(Properties.Settings.Default.UserName);
             if(isNewUser)
             {
                 MessageBox.Show("Admin nie potwierdził jeszcze konta użytkownikowi, nie możesz wysłać zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -170,10 +174,11 @@ namespace ZakladMechanikiSamochodowej.Client
             }
         }
 
-        private bool checkUserState()
+        public bool checkUserState(string username)
         {
-            var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
-            return user.IsNew;      
+            var user = LoginTableActions.TryGetUserByName(username);
+            if (user != null) return user.IsNew;
+            else return false;
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
