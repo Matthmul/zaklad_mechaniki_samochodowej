@@ -57,7 +57,6 @@ namespace ZakladMechanikiSamochodowej.Client
            Close();
         }
 
-
         public bool IsValidEmailAddress(string s)
         {
             Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");

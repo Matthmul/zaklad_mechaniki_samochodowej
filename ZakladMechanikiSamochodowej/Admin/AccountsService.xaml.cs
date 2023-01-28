@@ -14,10 +14,10 @@ namespace ZakladMechanikiSamochodowej.Admin
     public partial class AccountsService : Window
     {
         private HomeAdmin _homeAdmin;
-        public AccountsService(HomeAdmin ha)
+        public AccountsService(HomeAdmin homeAdmin)
         {
             InitializeComponent();
-            _homeAdmin = ha;
+            _homeAdmin = homeAdmin;
             LoadNewUsers();
             LoadFindedUsers();
         }

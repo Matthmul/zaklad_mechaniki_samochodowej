@@ -34,7 +34,7 @@
                 <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
                     <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" FontSize="18">Nazwa użytkownika</TextBlock>
                 </Label>
-                <TextBox Grid.Row="1" Name="txtUsername" TextWrapping="Wrap" FontSize="16"/>
+                <TextBox Grid.Row="1" Name="txtUsername" x:FieldModifier="public" TextWrapping="Wrap" FontSize="16"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -44,7 +44,7 @@
                 <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
                     <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" FontSize="18">Hasło</TextBlock>
                 </Label>
-                <PasswordBox Grid.Row="1" PasswordChar="*" Name="txtPassword" FontSize="16"/>
+                <PasswordBox Grid.Row="1" PasswordChar="*" x:FieldModifier="public" Name="txtPassword" FontSize="16"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -54,7 +54,7 @@
                 <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">
                     <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" FontSize="18">Adres E-Mail</TextBlock>
                 </Label>
-                <TextBox Grid.Row="1" Name="txtEmail" TextWrapping="Wrap" FontSize="16"/>
+                <TextBox Grid.Row="1" Name="txtEmail" x:FieldModifier="public" TextWrapping="Wrap" FontSize="16"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
                 <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18">
                     <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Numer telefonu</TextBlock>
                 </Label>
-                <TextBox Grid.Row="1" Name="txtPhoneNumber" TextWrapping="Wrap" FontSize="16"/>
+                <TextBox Grid.Row="1" Name="txtPhoneNumber" x:FieldModifier="public" TextWrapping="Wrap" FontSize="16"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">

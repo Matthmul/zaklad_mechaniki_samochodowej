@@ -46,5 +46,12 @@ namespace ZakladMechanikiSamochodowej.Database.DatabaseActions
             }
             dbContext.SaveChanges();
         }
+
+        public static void RemoveOrder(Order order)
+        {
+            using var dbContext = new DatabaseConnection();
+            dbContext.Remove(order);
+            dbContext.SaveChanges();
+        }
     }
 }

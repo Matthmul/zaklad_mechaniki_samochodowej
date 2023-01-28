@@ -84,8 +84,8 @@ namespace ZakladMechanikiSamochodowej.Client
             bool orderingParts = false;
             bool training = false;
 
-            var isNewUser=checkUserState(Properties.Settings.Default.UserName);
-            if(isNewUser)
+            var isNewUser = checkUserState(Properties.Settings.Default.UserName);
+            if (isNewUser)
             {
                 MessageBox.Show("Admin nie potwierdził jeszcze konta użytkownikowi, nie możesz wysłać zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -177,8 +177,8 @@ namespace ZakladMechanikiSamochodowej.Client
         public bool checkUserState(string username)
         {
             var user = LoginTableActions.TryGetUserByName(username);
-            if (user != null) return user.IsNew;
-            else return false;
+            
+            return user?.IsNew ?? false;
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
