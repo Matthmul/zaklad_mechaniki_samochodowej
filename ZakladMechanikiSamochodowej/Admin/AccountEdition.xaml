@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="AccountEdition" Height="400" Width="445">
+        Title="Edytu konto" Height="400" Width="445">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="AccountsService" Height="450" Width="1045">
+        Title="Edycja kont" Height="450" Width="1045">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
@@ -95,8 +95,8 @@
                 <ListView Grid.Row="1" Name="listViewFoundAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" Width="520">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true">
-                            <GridViewColumn DisplayMemberBinding="{Binding Username}">
-                                <GridViewColumnHeader>
+                            <GridViewColumn  DisplayMemberBinding="{Binding Username}">
+                                <GridViewColumnHeader >
                                     Nazwa użytkownika
                                     <GridViewColumnHeader.ContextMenu>
                                         <ContextMenu>
@@ -106,9 +106,9 @@
                                     </GridViewColumnHeader.ContextMenu>
                                 </GridViewColumnHeader>
                             </GridViewColumn>
-                            <GridViewColumn Header="Mail">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
+                            <GridViewColumn Header="Mail" >
+                                <GridViewColumn.CellTemplate >
+                                    <DataTemplate >
                                         <TextBlock Text="{Binding EmialAddress}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

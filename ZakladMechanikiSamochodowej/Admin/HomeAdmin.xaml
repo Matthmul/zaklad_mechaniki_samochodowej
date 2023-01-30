@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="Home Admin" Height="450" Width="800">
+        Title="Panel Administratora" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
@@ -94,6 +94,10 @@
                 <TextBlock Grid.Row="1" x:Name="txtDoneOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
             </Grid>
             <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="51*"/>
+                    <ColumnDefinition Width="49*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />

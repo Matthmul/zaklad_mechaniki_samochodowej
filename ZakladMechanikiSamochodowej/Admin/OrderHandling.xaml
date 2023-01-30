@@ -6,7 +6,7 @@
 		xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
 		mc:Ignorable="d"
         Closing="OrderWindow_Closing"
-		Title="OrderHandling" Height="500" Width="774">
+		Title="Obsługa zleceń" Height="500" Width="774">
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
@@ -40,13 +40,13 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
-                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje do wykonania</TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" Foreground="IndianRed">Akcje do wykonania</TextBlock>
             </Label>
             <Grid Grid.Row="1">
                 <ListBox Name="listBoxActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
             </Grid>
             <Label Grid.Row="2" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
-                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje wykonane</TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" Foreground="LightSeaGreen">Akcje wykonane</TextBlock>
             </Label>
             <Grid Grid.Row="3">
                 <ListBox Name="listBoxDoneActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
