@@ -95,14 +95,13 @@
             </Grid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="51*"/>
-                    <ColumnDefinition Width="49*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Background="#2d3436" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Background="#2d3436" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
                     <TextBlock Text="Zamknięte" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174"/>
                 </Label>
                 <TextBlock Grid.Row="1" x:Name="txtClosedOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
