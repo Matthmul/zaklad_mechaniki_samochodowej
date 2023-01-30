@@ -6,7 +6,67 @@
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
         Title="AccountsService" Height="450" Width="1045">
-    <Grid>
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#578BF2" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1A2873"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="Pill1Style" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#578BF2" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="MinWidth" Value="40" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="1" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="Pill2Style" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#d63031" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="MinWidth" Value="40" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="1" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="Pill3Style" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#00b894" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="MinWidth" Value="60" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="1" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="#F2F2F2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
@@ -28,11 +88,11 @@
                         <ColumnDefinition Width="75" />
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" x:Name="searchPhrase" FontSize="16"/>
-                    <Button Grid.Column="1" Click="ButtonSearchAccount_Click">
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Click="ButtonSearchAccount_Click">
                         <TextBlock Text="Wyszukaj konto" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button>
                 </Grid>
-                <ListView Grid.Row="1" Name="listViewFoundAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView Grid.Row="1" Name="listViewFoundAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" Width="520">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true">
                             <GridViewColumn DisplayMemberBinding="{Binding Username}">
@@ -57,14 +117,14 @@
                             <GridViewColumn Header="Edytuj">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="ButtonEditUser_Click">Edytuj</Button>
+                                        <Button Style="{StaticResource Pill1Style}" Click="ButtonEditUser_Click">Edytuj</Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="Usuń">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="ButtonDeleteUser_Click">Usuń</Button>
+                                        <Button Style="{StaticResource Pill2Style}" Click="ButtonDeleteUser_Click">Usuń</Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -84,7 +144,7 @@
                     <RowDefinition Height="35" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" Click="ButtonRefreshNewAccounts_Click">
+                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Click="ButtonRefreshNewAccounts_Click">
                     <TextBlock Text="Odśwież listę" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
                 <ListView Grid.Row="1" Name="listViewNewAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
@@ -112,14 +172,14 @@
                             <GridViewColumn Header="Zatwierdź">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="ButtonAcceptUser_Click">Zatwierdź</Button>
+                                        <Button Style="{StaticResource Pill3Style}" Click="ButtonAcceptUser_Click">Zatwierdź</Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>                            
+                            </GridViewColumn>
                             <GridViewColumn Header="Odrzuć">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Click="ButtonDeleteUser_Click">Odrzuć</Button>
+                                        <Button Style="{StaticResource Pill2Style}" Click="ButtonDeleteUser_Click">Odrzuć</Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

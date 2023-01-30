@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Client"
         mc:Ignorable="d"
-        Title="AddData" Height="450" Width="800">
-    <Grid Background="Bisque">
+        Title="Zmień dane" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#578BF2" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1A2873"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#F2F2F2">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
@@ -21,9 +39,9 @@
             <TextBox  Name="txtTelephone" HorizontalAlignment="Right" Height="34" VerticalAlignment="Top" Width="381" Margin="0,38,137,0" FontSize="16"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Button Background="#FF686AE0" IsDefault="True"  HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="332" Click="addClientAdditionalData" FontSize="22" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Style="{StaticResource ButtonStyle}" IsDefault="True"  HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="332" Click="addClientAdditionalData" BorderBrush="{x:Null}" Foreground="{x:Null}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Arial" >Zmień Dane</TextBlock>
+                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Candara" >Zmień Dane</TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

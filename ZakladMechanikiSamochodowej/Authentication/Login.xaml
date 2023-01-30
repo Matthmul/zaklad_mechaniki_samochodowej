@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Authentication"
         mc:Ignorable="d"
-        Title="Login" Height="270" Width="601" Background="Black">
-    <Grid Background="Bisque">
+        Title="Zaloguj" Height="270" Width="601" Background="Black">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#578BF2" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1A2873"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#F2F2F2">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
@@ -22,14 +40,14 @@
             <PasswordBox PasswordChar="*" Name="txtPassword" HorizontalAlignment="Right" Height="34" VerticalAlignment="Center" Width="381" FontSize="16" Margin="0,0,10,0"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Button IsDefault="True" HorizontalAlignment="Center" Height="38" VerticalAlignment="Center" Width="300" Click="ButtonLogin_Click" FontSize="16" Background="#FF686AE0" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button Style="{StaticResource ButtonStyle}" IsDefault="True" HorizontalAlignment="Center" Height="38" VerticalAlignment="Top" Width="311" Click="ButtonLogin_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,16,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="White" FontFamily="Arial" FontSize="20">Zaloguj</TextBlock>
+                    <TextBlock Foreground="White" FontFamily="Candara" FontSize="16">Zaloguj</TextBlock>
                 </StackPanel>
             </Button>
         </Grid>
         <Grid Grid.Row="3">
-            <Button Content="Nie masz konta? Utwórz je teraz" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonRegister_Click" FontSize="14" FontWeight="Bold" Width="249" Height="30"/>
+            <Button Content="Utwórz konto" Style="{StaticResource ButtonStyle}" Background="#1A2873" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonRegister_Click" FontSize="14" Width="311" Height="30" FontFamily="Candara" Margin="0,10,0,0"/>
         </Grid>
     </Grid>
 </Window>
