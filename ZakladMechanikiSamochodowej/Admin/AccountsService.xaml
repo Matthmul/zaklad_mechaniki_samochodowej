@@ -5,7 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="AccountsService" Height="450" Width="1045">
+        Title="AccountsService" Height="450" Width="1045" Background="Bisque">
+    <Window.Resources>
+
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="RosyBrown" />
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="2" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -27,16 +41,16 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="75" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" x:Name="searchPhrase" FontSize="16"/>
-                    <Button Grid.Column="1" Click="ButtonSearchAccount_Click">
+                    <TextBox Grid.Column="0" x:Name="searchPhrase" FontSize="16" Background="Honeydew"/>
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Column="1" Click="ButtonSearchAccount_Click">
                         <TextBlock Text="Wyszukaj konto" TextWrapping="Wrap" TextAlignment="Center"/>
                     </Button>
                 </Grid>
                 <ListView Grid.Row="1" Name="listViewFoundAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true">
-                            <GridViewColumn DisplayMemberBinding="{Binding Username}">
-                                <GridViewColumnHeader>
+                            <GridViewColumn  DisplayMemberBinding="{Binding Username}">
+                                <GridViewColumnHeader >
                                     Nazwa użytkownika
                                     <GridViewColumnHeader.ContextMenu>
                                         <ContextMenu>
@@ -46,9 +60,9 @@
                                     </GridViewColumnHeader.ContextMenu>
                                 </GridViewColumnHeader>
                             </GridViewColumn>
-                            <GridViewColumn Header="Mail">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
+                            <GridViewColumn Header="Mail" >
+                                <GridViewColumn.CellTemplate >
+                                    <DataTemplate >
                                         <TextBlock Text="{Binding EmialAddress}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -84,7 +98,7 @@
                     <RowDefinition Height="35" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0" Click="ButtonRefreshNewAccounts_Click">
+                <Button Background="ForestGreen" Foreground="DarkRed" Grid.Row="0" Click="ButtonRefreshNewAccounts_Click">
                     <TextBlock Text="Odśwież listę" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
                 <ListView Grid.Row="1" Name="listViewNewAccounts" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">

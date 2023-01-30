@@ -6,7 +6,21 @@
 		xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
 		mc:Ignorable="d"
         Closing="OrderWindow_Closing"
-		Title="OrderHandling" Height="450" Width="800">
+		Title="OrderHandling" Height="450" Width="800" Background="Bisque">
+    <Window.Resources>
+
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="BurlyWood" />
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="2" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" />
@@ -21,13 +35,13 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
-                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje do wykonania</TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" Foreground="IndianRed">Akcje do wykonania</TextBlock>
             </Label>
             <Grid Grid.Row="1">
                 <ListBox Name="listBoxActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
             </Grid>
             <Label Grid.Row="2" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">
-                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">Akcje wykonane</TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis" Foreground="LightSeaGreen">Akcje wykonane</TextBlock>
             </Label>
             <Grid Grid.Row="3">
                 <ListBox Name="listBoxDoneActions" SelectionMode="Single" FontSize="16" BorderBrush="Black" Background="{x:Null}" MouseDoubleClick="ListBoxActions_DoubleClick"/>
@@ -142,10 +156,10 @@
 						<RowDefinition Height="1*"/>
 						<RowDefinition Height="1*"/>
 					</Grid.RowDefinitions>
-					<Button Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonUserInfo_Click">Informacje o kliencie</Button>
-					<Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonEditCar_Click">Edytuj dane samochodu</Button>
-					<Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonEditOrderState_Click">Edytuj status zlecenia</Button>
-					<Button Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonSaveDoneActions_Click">Zapisz wykonane akcje</Button>
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonUserInfo_Click">Informacje o kliencie</Button>
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonEditCar_Click">Edytuj dane samochodu</Button>
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonEditOrderState_Click">Edytuj status zlecenia</Button>
+                    <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonSaveDoneActions_Click">Zapisz wykonane akcje</Button>
 				</Grid>
             </Grid>
         </Grid>

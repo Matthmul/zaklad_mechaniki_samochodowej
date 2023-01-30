@@ -5,7 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Admin"
         mc:Ignorable="d"
-        Title="AccountEdition" Height="400" Width="445">
+        Title="AccountEdition" Height="400" Width="445" Background="Bisque">
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF15E852" />
+            <Setter Property="Foreground" Value="MediumBlue" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -68,7 +84,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Click="ButtonSave_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontSize="18">Zapisz zmiany</Button>
+            <Button Style="{StaticResource ButtonStyle2}" Click="ButtonSave_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontSize="18">Zapisz zmiany</Button>
         </Grid>
     </Grid>
 </Window>
