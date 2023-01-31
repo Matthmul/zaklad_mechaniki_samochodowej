@@ -67,7 +67,17 @@ namespace ZakladMechanikiSamochodowej.Client
 
         private void AddComboBoxBrands()
         {
-            List<string> carsList = new List<string>() { "Toyota", "Skoda", "Dacia", "Opel", "Hyundai", "Kia", "Volkswagen", "Renault", "Fiat" };
+            List<string> carsList = new List<string>() { 
+                "Toyota", 
+                "Skoda", 
+                "Dacia", 
+                "Opel", 
+                "Hyundai", 
+                "Kia", 
+                "Volkswagen", 
+                "Renault", 
+                "Fiat" 
+            };
 
             foreach (var item in carsList)
             {
@@ -84,15 +94,17 @@ namespace ZakladMechanikiSamochodowej.Client
             bool orderingParts = false;
             bool training = false;
 
-            var isNewUser = checkUserState(Properties.Settings.Default.UserName);
-            if (isNewUser)
+            var isNotAcceptedUser = checkUserState(Properties.Settings.Default.UserName);
+            if (isNotAcceptedUser)
             {
-                MessageBox.Show("Admin nie potwierdził jeszcze konta użytkownikowi, nie możesz wysłać zlecenia.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Administrator nie potwierdził jeszcze konta użytkownikowi, nie możesz wysłać zlecenia.", 
+                    "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (txtCarModel.Text == "BRAK" || txtNrVin.Text == "BRAK" || txtProductionYear.Text == "BRAK" ||
-               txtRegistrationNumber.Text == "BRAK" || txtEngineCapacity.Text == "BRAK")
+            if (txtCarModel.Text == "" || txtNrVin.Text == "" || txtProductionYear.Text == "" ||
+               txtRegistrationNumber.Text == "" || txtEngineCapacity.Text == "")
             {
                 MessageBox.Show("Nie wpisano wszystkich wymaganych wartosci", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -231,6 +243,11 @@ namespace ZakladMechanikiSamochodowej.Client
             data.ShowDialog();
             AddText();
             //Close();
+        }
+
+        private void comboBoxCarBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

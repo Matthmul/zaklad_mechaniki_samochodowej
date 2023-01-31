@@ -6,7 +6,7 @@
 		xmlns:local="clr-namespace:ZakladMechanikiSamochodowej.Client"
 		mc:Ignorable="d"
         
-		Title="Home Klient" Height="450" Width="800" Background="Linen">
+		Title="Panel klienta" Height="450" Width="800" Background="#F2F2F2">
     <Window.Resources>
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="OrangeRed" />
@@ -15,27 +15,20 @@
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="OrangeRed" />
-            <Setter Property="Foreground" Value="MediumBlue" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="#578BF2" />
+            <Setter Property="FontSize" Value="11" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="7" />
+                    <Setter Property="CornerRadius" Value="3" />
                 </Style>
             </Style.Resources>
-        </Style>
-
-        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="Cornsilk" />
-            <Setter Property="Foreground" Value="MediumBlue" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="4" />
-                </Style>
-            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1A2873"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
@@ -77,7 +70,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Content="Użytkownik" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Height="23" Width="74" TextAlignment="Center" TextWrapping="WrapWithOverflow"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="txtUserNameText" HorizontalAlignment="Center" VerticalAlignment="Top" Height="23" Width="140" TextAlignment="Center" TextWrapping="WrapWithOverflow" Margin="0,2,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                     <Label  x:Name="isNewUserLabel" Content="!!!" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="101,2,0,0" Grid.Row="1"  Foreground="Red" Visibility="Hidden"/>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -88,25 +81,24 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Content="Numer telefonu" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Grid.Row="2"/>
-                    <TextBlock x:Name="txtTelephoneNumber" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Top" Height="15" Width="85" Grid.Row="2" Margin="0,18,0,0" Grid.RowSpan="2"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock x:Name="txtTelephoneNumber" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Top" Height="15" Width="140" Grid.Row="2" Margin="0,18,0,0" Grid.RowSpan="2"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                     <Label Content="Adres e-mail" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Height="19" FontSize="8" Width="58"/>
-                    <TextBlock x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center" Width="103" Grid.Row="1" Height="17" Margin="0,1,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
+                    <TextBlock x:Name="txtEmail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center" Width="140" Grid.Row="1" Height="17" Margin="0,1,0,0"><Run Language="pl-pl" Text="-------------"/></TextBlock>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
-
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonStyle2}"  HorizontalAlignment="Center"  VerticalAlignment="Center"  Click="AddMailTelephoneButton_Click" >
-                        <TextBlock   Text="Zmień telefon oraz adres e-mail" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="37" Width="99" ><Run Language="pl-pl"/></TextBlock>
+                    <Button Style="{StaticResource ButtonStyle}"  Click="AddMailTelephoneButton_Click" HorizontalAlignment="Center" Margin="0,25,0,10" >
+                        <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="24" Width="133" Foreground="White" FontFamily="Candara" RenderTransformOrigin="0.5,0.658" Text="Zmień adres email i numer telefonu" FontSize="11" />
                     </Button>
                 </Grid>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="2" Margin="0,72,0,-9" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource ButtonStyle}"  HorizontalAlignment="Center"  VerticalAlignment="Center"  Click="StatusButton_Click" >
-                        <TextBlock FontSize="14"  Text="Zobacz status najnowszego zlecenia" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" TextAlignment="Center"  VerticalAlignment="Center" Height="48" Width="136" ><Run Language="pl-pl"/></TextBlock>
+                    <Button Style="{StaticResource ButtonStyle}"  HorizontalAlignment="Center"  VerticalAlignment="Center"  Click="StatusButton_Click" Height="38" >
+                        <TextBlock FontSize="11"  Text="Zobacz status najnowszego zlecenia" TextWrapping="WrapWithOverflow" TextAlignment="Center" Height="25" Width="136" Foreground="White" FontFamily="Candara" VerticalAlignment="Center" ><Run Language="pl-pl"/></TextBlock>
                     </Button>
                 </Grid>
             </Grid>
@@ -131,7 +123,7 @@
                     </Style>
                 </Grid.Resources>
                 <Label Grid.Column="0" Grid.Row="0" Content="Co chcesz zrobić?" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Label Grid.Column="0" Grid.Row="0" Content="Można wybrać wiele czynności!" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="10" FontWeight="Normal" HorizontalAlignment="Left" Margin="90,49,0,0" Height="23" Width="147"/>
+                <Label Grid.Column="0" Grid.Row="0" Content="Można wybrać wiele czynności!" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="10" FontWeight="Normal" HorizontalAlignment="Left" Margin="86,49,0,0" Height="23" Width="148"/>
                 <CheckBox x:Name="Fix"  Grid.Column="0" Grid.Row="1" Content="Naprawa" VerticalAlignment="Center" Checked="CheckBox_Checked"  Margin="61,0,19,0"/>
                 <CheckBox x:Name="Review" Grid.Column="0" Grid.Row="2" Content="Przegląd" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,19,0"/>
                 <CheckBox x:Name="Assembly" Grid.Column="0" Grid.Row="3" Content="Montaż" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="61,0,35,0"/>
@@ -151,25 +143,25 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Marka pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-                    <ComboBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Name="comboBoxCarBrand">
+                    <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Name="comboBoxCarBrand" SelectionChanged="comboBoxCarBrand_SelectionChanged" Margin="0,48,0,0" Grid.RowSpan="2" Width="140">
                         <ComboBoxItem IsSelected="True">-------------</ComboBoxItem>
                     </ComboBox>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" RenderTransformOrigin="0.509,0.39">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Model pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Row="1" Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" Text="BRAK" VerticalAlignment="Center" FontSize="14"  TextChanged="txtCarModel_TextChanged" Width="116" GotFocus="TextBox_GotFocus"/>
+                    <Label Content="Model pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox Name="txtCarModel" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14"  TextChanged="txtCarModel_TextChanged" Width="140" GotFocus="TextBox_GotFocus" Margin="0,48,0,0" Height="24" Grid.RowSpan="2"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Pojemność (cm^3)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox Grid.Row="1" Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" Text="BRAK" VerticalAlignment="Center" FontSize="14"  TextChanged="txtEngineCapacity_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
+                    <Label Content="Pojemność (cm3)" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox Name="txtEngineCapacity" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"  TextChanged="txtEngineCapacity_TextChanged" Width="140" GotFocus="TextBox_GotFocus" Margin="0,48,0,0" Grid.RowSpan="2" Height="24"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="3">
@@ -183,16 +175,16 @@
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="NR VIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-                    <TextBox Grid.Row="1" x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"  Text="BRAK" FontSize="14"  TextChanged="txtNrVIN_TextChanged" Width="87" GotFocus="TextBox_GotFocus" />
+                    <Label Grid.Row="0" Content="NR VIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                    <TextBox x:Name="txtNrVin" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"  TextChanged="txtNrVIN_TextChanged" Width="140" GotFocus="TextBox_GotFocus" Margin="0,48,0,0" Grid.RowSpan="2" Height="24" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Content="Rok produkcji pojazdu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Width="157" />
-                    <TextBox Grid.Row="1" x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK" TextChanged="txtPRoductionYear_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
+                    <Label Content="Rok produkcji" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Width="96" />
+                    <TextBox x:Name="txtProductionYear" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" TextChanged="txtPRoductionYear_TextChanged" Width="140" GotFocus="TextBox_GotFocus" Margin="0,48,0,0" Height="24" Grid.RowSpan="2"/>
 
                 </Grid>
                 <Grid Grid.Row="2">
@@ -200,13 +192,13 @@
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-                    <TextBox Grid.Row="1" x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="BRAK"  TextChanged="txtRegistrationNumber_TextChanged" Width="87" GotFocus="TextBox_GotFocus"/>
+                    <Label Content="Nr Rejestracyjny" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                    <TextBox x:Name="txtRegistrationNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"  TextChanged="txtRegistrationNumber_TextChanged" Width="140" GotFocus="TextBox_GotFocus" Margin="0,48,0,0" Grid.RowSpan="2"/>
                 </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Content="Dodaj samochód do naprawy"  Background="DarkSalmon" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontFamily="Calibri" IsDefault="True">
+            <Button Content="Dodaj samochód do naprawy" Style="{StaticResource ButtonStyle}" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="Calibri" IsDefault="True" Width="354" Foreground="White">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
