@@ -10,7 +10,7 @@
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
             <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Style.Resources>
@@ -88,7 +88,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
-            <Button Style="{StaticResource ButtonStyle}" Click="ButtonSave_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontSize="16" FontFamily="Candara">Zapisz zmiany</Button>
+            <Button Style="{StaticResource ButtonStyle}" Click="ButtonSave_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontFamily="Candara">Zapisz zmiany</Button>
         </Grid>
     </Grid>
 </Window>

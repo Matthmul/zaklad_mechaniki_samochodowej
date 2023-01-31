@@ -9,7 +9,7 @@
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Style.Resources>
@@ -41,7 +41,7 @@
         <Grid Grid.Row="3">
             <Button Style="{StaticResource ButtonStyle}" IsDefault="True"  HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="332" Click="addClientAdditionalData" BorderBrush="{x:Null}" Foreground="{x:Null}">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Candara" >Zmień Dane</TextBlock>
+                    <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Candara" FontWeight="Bold" >Zmień Dane</TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

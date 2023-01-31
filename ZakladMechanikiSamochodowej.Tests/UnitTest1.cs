@@ -3,7 +3,7 @@ using ZakladMechanikiSamochodowej.Admin;
 using ZakladMechanikiSamochodowej.Database.DatabaseActions;
 using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 
-namespace ZakladMEchanikiSamochodowejTests
+namespace ZakladMechanikiSamochodowejTests
 {
     [TestFixture, Apartment(ApartmentState.STA)]
     public class Tests

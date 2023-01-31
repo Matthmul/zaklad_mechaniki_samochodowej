@@ -10,7 +10,7 @@
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
             <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Style.Resources>
@@ -69,7 +69,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Background="#74b9ff" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" FontFamily="Candara" Foreground="White">
-                    <TextBlock Text="Nowe" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174"/>
+                    <TextBlock Text="Nowe" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174" FontWeight="Bold"/>
                 </Label>
                 <TextBlock Grid.Row="1" x:Name="txtNewOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
             </Grid>
@@ -79,7 +79,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Background="#81ecec" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" FontWeight="Bold">
-                    <TextBlock Text="W trakcie" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" Width="174"/>
+                    <TextBlock Text="W trakcie" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" Width="174" FontFamily="Candara"/>
                 </Label>
                 <TextBlock Grid.Row="1" x:Name="txtInProgressOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
             </Grid>
@@ -89,7 +89,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Background="#00b894" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" FontWeight="Bold">
-                    <TextBlock Text="Zakończone" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174"/>
+                    <TextBlock Text="Zakończone" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174" FontFamily="Candara"/>
                 </Label>
                 <TextBlock Grid.Row="1" x:Name="txtDoneOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
             </Grid>
@@ -102,7 +102,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Background="#2d3436" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
-                    <TextBlock Text="Zamknięte" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174"/>
+                    <TextBlock Text="Zamknięte" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="174" FontFamily="Candara"/>
                 </Label>
                 <TextBlock Grid.Row="1" x:Name="txtClosedOrderNumber" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" Text="BRAK"/>
             </Grid>

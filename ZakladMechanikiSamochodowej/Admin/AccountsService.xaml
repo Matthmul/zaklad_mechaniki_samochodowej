@@ -10,7 +10,7 @@
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#578BF2" />
             <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Style.Resources>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZakladMechanikiSamochodowej
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZakladMechanikiSamochodowej", "ZakladMechanikiSamochodowej\ZakladMechanikiSamochodowej.csproj", "{090661C7-58ED-4973-A14D-A3930F67CFBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakladMEchanikiSamochodowejTests", "ZakladMEchanikiSamochodowejTests\ZakladMEchanikiSamochodowejTests.csproj", "{87B2D536-54ED-4F14-B463-9CA6A4197036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZakladMechanikiSamochodowej.Tests", "ZakladMechanikiSamochodowej.Tests\ZakladMechanikiSamochodowej.Tests.csproj", "{B7A93316-80A0-40CD-AD72-BEF65E49B6E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{090661C7-58ED-4973-A14D-A3930F67CFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{090661C7-58ED-4973-A14D-A3930F67CFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{090661C7-58ED-4973-A14D-A3930F67CFBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87B2D536-54ED-4F14-B463-9CA6A4197036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87B2D536-54ED-4F14-B463-9CA6A4197036}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87B2D536-54ED-4F14-B463-9CA6A4197036}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87B2D536-54ED-4F14-B463-9CA6A4197036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A93316-80A0-40CD-AD72-BEF65E49B6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A93316-80A0-40CD-AD72-BEF65E49B6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A93316-80A0-40CD-AD72-BEF65E49B6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A93316-80A0-40CD-AD72-BEF65E49B6E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
