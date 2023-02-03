@@ -14,6 +14,7 @@ namespace ZakladMechanikiSamochodowejTests
         [SetUp]
         public void Setup()
         {
+            ZakladMechanikiSamochodowej.Properties.Settings.Default.UserName = "admin";
             addData = new ZakladMechanikiSamochodowej.Client.AddData();
             homeClient = new ZakladMechanikiSamochodowej.Client.HomeClient();
 
