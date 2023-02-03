@@ -53,6 +53,15 @@ namespace ZakladMechanikiSamochodowej.Admin
             lb.Items.Add(lbi);
         }
 
+        private void AddActionDone(string action, ListBox lb)
+        {
+            ListBoxItem lbi = new()
+            {
+                Content = action
+            };
+            lb.Items.Add(lbi);
+        }
+
         private void LoadOrder()
         {
             txtCarBrand.Text = _orderInfo.Brand;
@@ -64,6 +73,7 @@ namespace ZakladMechanikiSamochodowej.Admin
             comboBoxOrderState.SelectedIndex = (int)_orderInfo.OrderState;
 
             UpdateActionsToDo();
+            UpdateActionsDone();
         }
 
         private bool TryParseText(TextBox tb, out int oiToSave)
@@ -110,28 +120,37 @@ namespace ZakladMechanikiSamochodowej.Admin
                     return;
                 }
 
-                txtCarBrand.IsEnabled = false;
-                txtCarModel.IsEnabled = false;
-                txtEngineCapacity.IsEnabled = false;
-                txtNrVin.IsEnabled = false;
-                txtProductionYear.IsEnabled = false;
-                txtRegistrationNumber.IsEnabled = false;
-
+                DisableCarEdit();
                 btn.Content = "Edytuj dane samochodu";
 
                 OrdersTableActions.UpdateOrder(_orderInfo);
             }
             else
             {
-                txtCarBrand.IsEnabled = true;
-                txtCarModel.IsEnabled = true;
-                txtEngineCapacity.IsEnabled = true;
-                txtNrVin.IsEnabled = true;
-                txtProductionYear.IsEnabled = true;
-                txtRegistrationNumber.IsEnabled = true;
 
+                EnableCarEdit();
                 btn.Content = "Zapisz dane samochodu";
             }
+        }
+
+        private void EnableCarEdit()
+        {
+            txtCarBrand.IsEnabled = true;
+            txtCarModel.IsEnabled = true;
+            txtEngineCapacity.IsEnabled = true;
+            txtNrVin.IsEnabled = true;
+            txtProductionYear.IsEnabled = true;
+            txtRegistrationNumber.IsEnabled = true;
+        }
+
+        private void DisableCarEdit()
+        {
+            txtCarBrand.IsEnabled = false;
+            txtCarModel.IsEnabled = false;
+            txtEngineCapacity.IsEnabled = false;
+            txtNrVin.IsEnabled = false;
+            txtProductionYear.IsEnabled = false;
+            txtRegistrationNumber.IsEnabled = false;
         }
 
         private void SetNewOrderState(string newState)
@@ -159,16 +178,64 @@ namespace ZakladMechanikiSamochodowej.Admin
             }
         }
 
+        private void UpdateActionsDone()
+        {
+            listBoxDoneActions.Items.Clear();
+
+            if (!_orderInfo.Fix)
+            {
+                AddActionDone("Fix", listBoxDoneActions);
+            }
+            if (!_orderInfo.Review)
+            {
+                AddActionDone("Review", listBoxDoneActions);
+            }
+            if (!_orderInfo.Assembly)
+            {
+                AddActionDone("Assembly", listBoxDoneActions);
+            }
+            if (!_orderInfo.TechnicalConsultation)
+            {
+                AddActionDone("TechnicalConsultation", listBoxDoneActions);
+            }
+            if (!_orderInfo.Training)
+            {
+                AddActionDone("Training", listBoxDoneActions);
+            }
+            if (!_orderInfo.OrderingParts)
+            {
+                AddActionDone("OrderingParts", listBoxDoneActions);
+            }
+        }
+
         private void UpdateActionsToDo()
         {
             listBoxActions.Items.Clear();
 
-            if (_orderInfo.Fix) AddActionToBeDone("Fix", listBoxActions);
-            if (_orderInfo.Review) AddActionToBeDone("Review", listBoxActions);
-            if (_orderInfo.Assembly) AddActionToBeDone("Assembly", listBoxActions);
-            if (_orderInfo.TechnicalConsultation) AddActionToBeDone("TechnicalConsultation", listBoxActions);
-            if (_orderInfo.Training) AddActionToBeDone("Training", listBoxActions);
-            if (_orderInfo.OrderingParts) AddActionToBeDone("OrderingParts", listBoxActions);
+            if (_orderInfo.Fix)
+            {
+                AddActionToBeDone("Fix", listBoxActions);
+            }
+            if (_orderInfo.Review)
+            {
+                AddActionToBeDone("Review", listBoxActions);
+            }
+            if (_orderInfo.Assembly)
+            {
+                AddActionToBeDone("Assembly", listBoxActions);
+            }
+            if (_orderInfo.TechnicalConsultation)
+            {
+                AddActionToBeDone("TechnicalConsultation", listBoxActions);
+            }
+            if (_orderInfo.Training)
+            {
+                AddActionToBeDone("Training", listBoxActions);
+            }
+            if (_orderInfo.OrderingParts)
+            {
+                AddActionToBeDone("OrderingParts", listBoxActions);
+            }
         }
 
         private void ButtonSaveDoneActions_Click(object sender, RoutedEventArgs e)

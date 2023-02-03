@@ -32,7 +32,9 @@ namespace ZakladMechanikiSamochodowej.Admin
 
         private void LoadFindedUsers(List<User>? users = null)
         {
-            listViewFoundAccounts.ItemsSource = (users != null) ? users : LoginTableActions.GetAllAcceptedUsers();
+            listViewFoundAccounts.ItemsSource = (users != null) 
+                ? users 
+                : LoginTableActions.GetAllAcceptedUsers();
             
             CollectionView viewFound = (CollectionView)CollectionViewSource.GetDefaultView(listViewFoundAccounts.ItemsSource);
             viewFound.SortDescriptions.Clear();
