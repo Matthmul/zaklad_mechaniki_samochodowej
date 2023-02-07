@@ -5,10 +5,7 @@ using System;
 using System.Linq;
 using ZakladMechanikiSamochodowej.Database.DatabaseActions;
 using ZakladMechanikiSamochodowej.Database.DatabaseModels;
-using System.Diagnostics.Metrics;
 using Microsoft.IdentityModel.Tokens;
-using System.Windows.Documents;
-using System.Runtime.InteropServices;
 using System.Windows.Media;
 
 namespace ZakladMechanikiSamochodowej.Client
@@ -193,10 +190,6 @@ namespace ZakladMechanikiSamochodowej.Client
             return user?.IsNew ?? false;
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
@@ -204,31 +197,16 @@ namespace ZakladMechanikiSamochodowej.Client
             tb.GotFocus -= TextBox_GotFocus;
         }
 
-        private void txtEngineCapacity_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-        }
-
-        private void txtRegistrationNumber_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-        }
-
-        private void txtPRoductionYear_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-        }
-
-        private void txtNrVIN_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-        }
-
-        private void txtCarModel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
             var user = LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            if (user == null)
+            {
+                MessageBox.Show("Nie ma pobrać użytkownika o takim loginie", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             List<Order> orderState = OrdersTableActions.GetLastOrder(user.Id);
-            if (orderState.Count() == 0 || orderState == null)
+            if (orderState == null || orderState.Count == 0)
             {
                 MessageBox.Show("Nie stworzyłeś jeszcze żadnego zamówienia", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -243,11 +221,6 @@ namespace ZakladMechanikiSamochodowej.Client
             data.ShowDialog();
             AddText();
             //Close();
-        }
-
-        private void comboBoxCarBrand_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
