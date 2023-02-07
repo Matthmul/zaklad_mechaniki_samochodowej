@@ -1,20 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ZakladMechanikiSamochodowej.Database.DatabaseActions;
-using ZakladMechanikiSamochodowej.Database.DatabaseModels;
 
 namespace ZakladMechanikiSamochodowej.Client
 {
@@ -46,6 +33,11 @@ namespace ZakladMechanikiSamochodowej.Client
             }
 
             var user=LoginTableActions.TryGetUserByName(Properties.Settings.Default.UserName);
+            if (user == null)
+            {
+                MessageBox.Show("Nie ma pobrać użytkownika o takim loginie", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             user.PhoneNumber = phone;
             user.EmialAddress = email;
 
