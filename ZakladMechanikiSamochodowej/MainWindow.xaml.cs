@@ -17,15 +17,6 @@ namespace ZakladMechanikiSamochodowej
         }
         private void InitDatabase()
         {
-            if (LoginTableActions.TryGetUserByName("admin") == null)
-            {
-                LoginTableActions.SaveUser(new User
-                    ("admin", "admin")
-                {
-                    IsAdmin = true
-                });
-            }
-
             Hide();
             Login login = new();
             login.ShowDialog();

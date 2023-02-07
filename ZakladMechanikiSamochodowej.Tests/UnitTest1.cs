@@ -70,10 +70,14 @@ namespace ZakladMechanikiSamochodowejTests
         [Test]
         public void TestHomeClientCheckUserState()
         {
-            String userName = "aa";
+            String userName = "testUser";
+            User user = new (userName, "t");
+            LoginTableActions.SaveUser(user);
 
             bool result = homeClient.checkUserState(userName);
             Assert.IsTrue(result);
+
+            LoginTableActions.RemoveUser(user);
         }
 
         // ======================================
